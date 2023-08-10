@@ -1,4 +1,4 @@
-# Create Todo React App easily with Material UI
+# Create Todo React App easily with Material
 
 To begin:
 <br />

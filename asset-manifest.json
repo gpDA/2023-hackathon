@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/2023-hackathon/static/css/main.2be32c3e.chunk.css",
-    "main.js": "/2023-hackathon/static/js/main.d67ba202.chunk.js",
-    "main.js.map": "/2023-hackathon/static/js/main.d67ba202.chunk.js.map",
+    "main.js": "/2023-hackathon/static/js/main.e51c3ea8.chunk.js",
+    "main.js.map": "/2023-hackathon/static/js/main.e51c3ea8.chunk.js.map",
     "runtime-main.js": "/2023-hackathon/static/js/runtime-main.3efaf8a5.js",
     "runtime-main.js.map": "/2023-hackathon/static/js/runtime-main.3efaf8a5.js.map",
     "static/css/2.708ba609.chunk.css": "/2023-hackathon/static/css/2.708ba609.chunk.css",
@@ -21,6 +21,6 @@
     "static/css/2.708ba609.chunk.css",
     "static/js/2.ef1843c3.chunk.js",
     "static/css/main.2be32c3e.chunk.css",
-    "static/js/main.d67ba202.chunk.js"
+    "static/js/main.e51c3ea8.chunk.js"
   ]
 }

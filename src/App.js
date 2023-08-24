@@ -49,7 +49,7 @@ function App() {
     },
     {
       id: 'test1',
-      component: <HorizontalStackedBar />,
+      component: <HorizontalStackedBar data={STACKED_BAR_CHART_DATA}/>,
       imgSrc: '/horizontal-stacked-bar.png',
     },     
     {

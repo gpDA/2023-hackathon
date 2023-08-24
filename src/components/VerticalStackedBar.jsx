@@ -5,7 +5,7 @@ import * as d3 from "d3";
 
 const VerticalStackedBar = ({
   data,
-  label = { show: true, xLabel: "Sum Percentage %", yLabel: "Risk Class" },
+  label = { show: true, xLabel: "Percentage %", yLabel: "Fruit Type" },
   width = 400,
   height = 400,
   margin = 80,

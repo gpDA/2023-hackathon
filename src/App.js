@@ -13,6 +13,23 @@ const BAR_CHART_DATA = [
   { label: "Kiwis", value: 150 }
 ];
 
+const STACKED_BAR_CHART_DATA = [
+  { label: "Apples", value: 100, diff: 100, max: 200 },
+  { label: "Bananas", value: 200, diff: 0, max: 200 },
+  { label: "Oranges", value: 50, diff: 150, max: 200  },
+  { label: "Kiwis", value: 150, diff: 50, max: 200  }
+];
+
+const AREA_CHART_DATA = [
+  { data: "2001", value: 100 },
+  { data: "2002", value: 150 },
+  { data: "2003", value: 100 },
+  { data: "2004", value: 400 },
+  { data: "2005", value: 1070 },
+  { data: "2006", value: 700 }
+];
+
+
 function App() {
   const test = [
     {
@@ -27,7 +44,7 @@ function App() {
     },
     {
       id: 'test1',
-      component: <VerticalStackedBar />,
+      component: <VerticalStackedBar data={STACKED_BAR_CHART_DATA} />,
       imgSrc: '/vertical-stacked-bar.png',
     },
     {
@@ -37,12 +54,12 @@ function App() {
     },     
     {
       id: 'test1',
-      component: <AreaChart />,
+      component: <AreaChart data={AREA_CHART_DATA} />,
       imgSrc: '/area-chart.png',
     },
     {
       id: 'test1',
-      component: <PieGraph />,
+      component: <PieGraph data={BAR_CHART_DATA} dataKey="label" value="value"/>,
       imgSrc: '/pie-graph.png',
     },               
   ]

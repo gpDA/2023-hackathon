@@ -63,3 +63,9 @@ h1 {
   position: absolute;
   width: 1px;
 }
+
+.arc:hover {
+	cursor: pointer;
+	stroke-width: 3;
+	stroke: white;
+}

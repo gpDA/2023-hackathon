@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/2023-hackathon/static/css/main.2be32c3e.chunk.css",
-    "main.js": "/2023-hackathon/static/js/main.e51c3ea8.chunk.js",
-    "main.js.map": "/2023-hackathon/static/js/main.e51c3ea8.chunk.js.map",
-    "runtime-main.js": "/2023-hackathon/static/js/runtime-main.3efaf8a5.js",
-    "runtime-main.js.map": "/2023-hackathon/static/js/runtime-main.3efaf8a5.js.map",
+    "main.css": "/2023-hackathon/static/css/main.0d180e3a.chunk.css",
+    "main.js": "/2023-hackathon/static/js/main.ff2ef2a0.chunk.js",
+    "main.js.map": "/2023-hackathon/static/js/main.ff2ef2a0.chunk.js.map",
+    "runtime-main.js": "/2023-hackathon/static/js/runtime-main.8ab91ef4.js",
+    "runtime-main.js.map": "/2023-hackathon/static/js/runtime-main.8ab91ef4.js.map",
     "static/css/2.708ba609.chunk.css": "/2023-hackathon/static/css/2.708ba609.chunk.css",
-    "static/js/2.ef1843c3.chunk.js": "/2023-hackathon/static/js/2.ef1843c3.chunk.js",
-    "static/js/2.ef1843c3.chunk.js.map": "/2023-hackathon/static/js/2.ef1843c3.chunk.js.map",
-    "static/js/3.72471134.chunk.js": "/2023-hackathon/static/js/3.72471134.chunk.js",
-    "static/js/3.72471134.chunk.js.map": "/2023-hackathon/static/js/3.72471134.chunk.js.map",
+    "static/js/2.087e61cf.chunk.js": "/2023-hackathon/static/js/2.087e61cf.chunk.js",
+    "static/js/2.087e61cf.chunk.js.map": "/2023-hackathon/static/js/2.087e61cf.chunk.js.map",
+    "static/js/3.af218c1f.chunk.js": "/2023-hackathon/static/js/3.af218c1f.chunk.js",
+    "static/js/3.af218c1f.chunk.js.map": "/2023-hackathon/static/js/3.af218c1f.chunk.js.map",
     "index.html": "/2023-hackathon/index.html",
     "static/css/2.708ba609.chunk.css.map": "/2023-hackathon/static/css/2.708ba609.chunk.css.map",
-    "static/css/main.2be32c3e.chunk.css.map": "/2023-hackathon/static/css/main.2be32c3e.chunk.css.map",
-    "static/js/2.ef1843c3.chunk.js.LICENSE.txt": "/2023-hackathon/static/js/2.ef1843c3.chunk.js.LICENSE.txt",
+    "static/css/main.0d180e3a.chunk.css.map": "/2023-hackathon/static/css/main.0d180e3a.chunk.css.map",
+    "static/js/2.087e61cf.chunk.js.LICENSE.txt": "/2023-hackathon/static/js/2.087e61cf.chunk.js.LICENSE.txt",
     "static/media/index.css": "/2023-hackathon/static/media/roboto-vietnamese-400-normal.52cebac0.woff2"
   },
   "entrypoints": [
-    "static/js/runtime-main.3efaf8a5.js",
+    "static/js/runtime-main.8ab91ef4.js",
     "static/css/2.708ba609.chunk.css",
-    "static/js/2.ef1843c3.chunk.js",
-    "static/css/main.2be32c3e.chunk.css",
-    "static/js/main.e51c3ea8.chunk.js"
+    "static/js/2.087e61cf.chunk.js",
+    "static/css/main.0d180e3a.chunk.css",
+    "static/js/main.ff2ef2a0.chunk.js"
   ]
 }

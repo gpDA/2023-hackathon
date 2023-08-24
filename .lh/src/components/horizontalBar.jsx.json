@@ -1,0 +1,62 @@
+{
+    "sourceFile": "src/components/horizontalBar.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 11,
+            "patches": [
+                {
+                    "date": 1692822531692,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1692822834610,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import React from 'react'\r\n \r\n-function horizontalBar() {\r\n+const horizontalBar = () => {\r\n   return (\r\n     <div>horizontal-bar</div>\r\n   )\r\n }\r\n"
+                },
+                {
+                    "date": 1692822840530,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,9 @@\n+import React from 'react'\r\n+\r\n+const horizontalBar = () => {\r\n+  return (\r\n+    <div>horizontal-bar</div>\r\n+  )\r\n+}\r\n+\r\n+export default horizontalBar\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1692822875385,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,9 @@\n+import React from 'react'\r\n+\r\n+const HorizontalBar = () => {\r\n+  return (\r\n+    <div>horizontal-bar</div>\r\n+  )\r\n+}\r\n+\r\n+export default HorizontalBar\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1692822886653,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,9 @@\n+import React from 'react'\r\n+\r\n+const HorizontalBar = () => {\r\n+  return (\r\n+    <div>horizontal-bar</div>\r\n+  )\r\n+}\r\n+\r\n+export default HorizontalBar\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1692822918794,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,32 +5,5 @@\n     <div>horizontal-bar</div>\r\n   )\r\n }\r\n \r\n-export default HorizontalBar\n-import React from 'react'\r\n-\r\n-const HorizontalBar = () => {\r\n-  return (\r\n-    <div>horizontal-bar</div>\r\n-  )\r\n-}\r\n-\r\n-export default HorizontalBar\n-import React from 'react'\r\n-\r\n-const horizontalBar = () => {\r\n-  return (\r\n-    <div>horizontal-bar</div>\r\n-  )\r\n-}\r\n-\r\n-export default horizontalBar\n-import React from 'react'\r\n-\r\n-const horizontalBar = () => {\r\n-  return (\r\n-    <div>horizontal-bar</div>\r\n-  )\r\n-}\r\n-\r\n-export default horizontalBar\n\\ No newline at end of file\n+export default HorizontalBar\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1692822953571,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,9 @@\n+import React from 'react'\r\n+\r\n+const HorizontalBar = () => {\r\n+  return (\r\n+    <div>horizontal-bar</div>\r\n+  )\r\n+}\r\n+\r\n+export default HorizontalBar\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1692822977764,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,14 +5,5 @@\n     <div>horizontal-bar</div>\r\n   )\r\n }\r\n \r\n-export default HorizontalBar\n-import React from 'react'\r\n-\r\n-const HorizontalBar = () => {\r\n-  return (\r\n-    <div>horizontal-bar</div>\r\n-  )\r\n-}\r\n-\r\n export default HorizontalBar\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1692823484219,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,10 @@\n+import React from 'react'\r\n+\r\n+// TODO: WORKING NOW\r\n+const HorizontalBar = () => {\r\n+  return (\r\n+    <div>horizontal-bar</div>\r\n+  )\r\n+}\r\n+\r\n+export default HorizontalBar\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1692823572095,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,10 @@\n+import React from 'react'\r\n+\r\n+// TODO: WORKING NOW\r\n+const HorizontalBar = () => {\r\n+  return (\r\n+    <div>horizontal-bar</div>\r\n+  )\r\n+}\r\n+\r\n+export default HorizontalBar\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1692824611262,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,10 @@\n+import React, { useRef } from 'react'\r\n+\r\n+// TODO: WORKING NOW\r\n+const HorizontalBar = () => {\r\n+  return (\r\n+    <div>horizontal-bar</div>\r\n+  )\r\n+}\r\n+\r\n+export default HorizontalBar\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1692824621427,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,10 @@\n+import React, { useRef } from 'react'\r\n+\r\n+// TODO: WORKING NOW\r\n+const HorizontalBar = () => {\r\n+  return (\r\n+    <div>horizontal-bar</div>\r\n+  )\r\n+}\r\n+\r\n+export default HorizontalBar\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1692822531692,
+            "name": "Commit-0",
+            "content": "import React from 'react'\r\n\r\nfunction horizontalBar() {\r\n  return (\r\n    <div>horizontal-bar</div>\r\n  )\r\n}\r\n\r\nexport default horizontalBar"
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/components/PieGraph/PieGraphPanel.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1692909541506,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1692909541506,
+            "name": "Commit-0",
+            "content": "import './PieGraphPanel.scss'\r\n\r\nconst PieGraphPanel = () => {\r\n    return (\r\n        <div className=\"pie-graph-left\">\r\n            hello PieGraphPanel\r\n        </div>\r\n    )\r\n};\r\n\r\nexport default PieGraphPanel;"
+        }
+    ]
+}

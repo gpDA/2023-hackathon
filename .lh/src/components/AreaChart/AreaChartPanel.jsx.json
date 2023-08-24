@@ -1,0 +1,42 @@
+{
+    "sourceFile": "src/components/AreaChart/AreaChartPanel.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1692908769851,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1692908805472,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,9 @@\n+const AreaChartPanel = () => {\r\n+    return (\r\n+        <div>\r\n+            hello AreaChartPanel\r\n+        </div>\r\n+    )\r\n+};\r\n+\r\n+export default AreaChartPanel;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1692908991178,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,9 @@\n+const AreaChartPanel = () => {\r\n+    return (\r\n+        <div className=\"area-chart-panel-wrapper\">\r\n+            hello AreaChartPanel\r\n+        </div>\r\n+    )\r\n+};\r\n+\r\n+export default AreaChartPanel;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1692909021810,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,11 @@\n+import './AreaChartPanel.scss'\r\n+\r\n+const AreaChartPanel = () => {\r\n+    return (\r\n+        <div className=\"area-chart-panel-wrapper\">\r\n+            hello AreaChartPanel\r\n+        </div>\r\n+    )\r\n+};\r\n+\r\n+export default AreaChartPanel;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1692909072963,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,11 @@\n+import './AreaChartPanel.scss'\r\n+\r\n+const AreaChartPanel = () => {\r\n+    return (\r\n+        <div className=\"area-chart-left\">\r\n+            hello AreaChartPanel\r\n+        </div>\r\n+    )\r\n+};\r\n+\r\n+export default AreaChartPanel;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1692909326043,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,11 @@\n+import './AreaChartPanel.scss'\r\n+\r\n+const AreaChartPanel = () => {\r\n+    return (\r\n+        <div className=\"area-chart-left\">\r\n+            hello AreaChartPanel\r\n+        </div>\r\n+    )\r\n+};\r\n+\r\n+export default AreaChartPanel;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1692909488758,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,11 @@\n+import './AreaChartPanel.scss'\r\n+\r\n+const AreaChartPanel = () => {\r\n+    return (\r\n+        <div className=\"area-chart-left\">\r\n+            hello AreaChartPanel\r\n+        </div>\r\n+    )\r\n+};\r\n+\r\n+export default AreaChartPanel;\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1692908769851,
+            "name": "Commit-0",
+            "content": "const AreaChartPanel = () => {\r\n    return (\r\n        <div>\r\n            hello AreaChartPanel\r\n        </div>\r\n    )\r\n};\r\n\r\nexport default AreaChartPanel;"
+        }
+    ]
+}

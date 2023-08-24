@@ -1,10 +1,12 @@
 import './App.scss';
-import HorizontalBar from "./components/HorizontalBar";
-import VerticalBar from "./components/VerticalBar";
-import HorizontalStackedBar from "./components/HorizontalStackedBar";
-import VerticalStackedBar from "./components/VerticalStackedBar";
-import AreaChart from "./components/AreaChart";
-import PieGraph from "./components/PieGraph";
+import HorizontalBar from "./components/HorizontalBar/HorizontalBar";
+import VerticalBar from "./components/VerticalBar/VerticalBar";
+import HorizontalStackedBar from "./components/HorizontalStackedBar/HorizontalStackedBar";
+import VerticalStackedBar from "./components/VeritcalStackedBar/VerticalStackedBar";
+import AreaChart from "./components/AreaChart/AreaChart";
+import PieGraph from "./components/PieGraph/PieGraph";
+import Sidebar from "./components/Sidebar/Sidebar";
+import { Routes, Route, Outlet, Link } from "react-router-dom";
 
 const BAR_CHART_DATA = [
   { label: "Apples", value: 100 },
@@ -66,7 +68,17 @@ function App() {
 
   return (
     <div className="wrapper">
-      {
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route path='/horizontal-bar' element={<HorizontalBar />}/>
+          <Route path='/vertical-bar' element={<VerticalBar data={BAR_CHART_DATA} />}/>
+          <Route path='/vertical-stacked-bar' element={<VerticalStackedBar data={STACKED_BAR_CHART_DATA}  />}/>
+          <Route path='/horizontal-stacked-bar' element={<HorizontalStackedBar />}/>
+          <Route path='/area-chart' element={<AreaChart data={AREA_CHART_DATA} />}/>
+          <Route path='/pie-graph' element={<PieGraph data={BAR_CHART_DATA} dataKey="label" value="value" />}/>
+        </Route>
+      </Routes>
+      {/* {
         test.map((el) => (
           <div className="box">
             <div className="left-box">
@@ -79,10 +91,19 @@ function App() {
           </div>
         )
         )
-      }
+      } */}
       
     </div>
   );
+}
+
+function Layout() {
+  return <div style={{
+    padding: '50px 0px 0px 370px'
+}}>
+    <Sidebar />
+    <Outlet />
+</div>;
 }
 
 export default App;

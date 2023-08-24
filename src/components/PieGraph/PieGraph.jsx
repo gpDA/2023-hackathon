@@ -1,7 +1,9 @@
 import React, { useRef, useEffect, useCallback } from "react";
-import { createColorPalette } from "../utils/color";
-import { createDomain, parseTooltipText } from "../utils/help";
+import { createColorPalette } from "../../utils/color";
+import { createDomain, parseTooltipText } from "../../utils/help";
 import * as d3 from "d3";
+import PieGraphPanel from "./PieGraphPanel";
+import './PieGraph.scss';
 
 const PieGraph = ({
   data,
@@ -212,8 +214,11 @@ const PieGraph = ({
   }, [svgRef, createPieGraph]);
 
   return (
-    <div style={{ margin: "2em" }}>
-      <svg ref={svgRef} width={width} height={height} />
+    <div style={{ margin: "2em" }} className="pie-graph-wrapper">
+      <PieGraphPanel />
+      <div className="pie-graph-right">
+        <svg ref={svgRef} width={width} height={height} />
+      </div>
     </div>
   );
 };

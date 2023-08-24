@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/components/HorizontalBar/HorizontalBar.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1692911305264,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1692911305264,
+            "name": "Commit-0",
+            "content": "import React, { useEffect, useCallback, useRef } from 'react'\r\nimport * as d3 from 'd3';\r\nimport HorizontalBarPanel from \"./HorizontalBarPanel\";\r\nimport './HorizontalBar.scss';\r\n\r\nconst data = [\r\n  { Country: 'US', Value: 100 },\r\n  { Country: 'S. Korea', Value: 85 },\r\n  { Country: 'Italy', Value: 72 },\r\n  { Country: 'Japan', Value: 80 },\r\n]\r\n\r\nconst HorizontalBar = ({\r\n  width=400,\r\n  height=300,\r\n  margin=20,\r\n}) => {\r\n  const svgRef = useRef(null);\r\n\r\n  const drawSvg = useCallback(\r\n    (div) => {\r\n      const svg = d3\r\n        .select(div)\r\n        .attr(\"width\", width + margin + 50)\r\n        .attr(\"height\", height + margin + 50)\r\n        .append(\"g\")\r\n        .attr(\"transform\", `translate(${margin + 30},${margin / 2})`);\r\n      return svg;\r\n    },\r\n    [height, width, margin]\r\n  );\r\n\r\n  // Add X axis\r\n  const x = d3.scaleLinear()\r\n    .domain([0, 100])\r\n    .range([ 0, width]);\r\n\r\n  // Y axis\r\n  var y = d3.scaleBand()\r\n    .range([ 0, height ])\r\n    .domain(data.map(function(d) { return d.Country; }))\r\n    .padding(.1);\r\n\r\n  const createGraph = (div) => {\r\n    const svg = drawSvg(div);\r\n\r\n    svg.append(\"g\")\r\n        .attr(\"transform\", \"translate(0,\" + height + \")\")\r\n        .call(d3.axisBottom(x))\r\n        .selectAll(\"text\")\r\n          .attr(\"transform\", \"translate(-10,0)rotate(-45)\")\r\n          .style(\"text-anchor\", \"end\");\r\n    svg.append(\"g\")\r\n        .call(d3.axisLeft(y))\r\n\r\n    svg.selectAll(\"myRect\")\r\n        .data(data)\r\n        .enter()\r\n        .append(\"rect\")\r\n        .attr(\"x\", x(0) )\r\n        .attr(\"y\", function(d) { return y(d.Country); })\r\n        .attr(\"width\", function(d) { return x(d.Value); })\r\n        .attr(\"height\", y.bandwidth() )\r\n        .attr(\"fill\", \"#69b3a2\")\r\n  }\r\n\r\n  useEffect(() => {\r\n    if (svgRef.current) {\r\n      createGraph(svgRef.current);\r\n    }\r\n  }, [svgRef, createGraph]);\r\n\r\n  return (\r\n    <div className=\"horizontal-bar-wrapper\">\r\n      <HorizontalBarPanel />\r\n      <div className=\"horizontal-bar-right\">\r\n        <svg ref={svgRef} />\r\n      </div>\r\n    </div>\r\n  )\r\n}\r\n\r\nexport default HorizontalBar"
+        }
+    ]
+}

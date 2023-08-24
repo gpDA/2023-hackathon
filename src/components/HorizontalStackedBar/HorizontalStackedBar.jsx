@@ -1,6 +1,8 @@
 import React, { useEffect, useCallback, useRef } from 'react';
-import { createColorPalette } from "../utils/color";
+import { createColorPalette } from "../../utils/color";
 import * as d3 from 'd3';
+import HorizontalStackedBarPanel from "./HorizontalStackedBarPanel";
+import './HorizontalStackedBar.scss';
 
 
 const HorizontalStackedBar = ({
@@ -131,8 +133,11 @@ const HorizontalStackedBar = ({
   }, [svgRef, createPieGraph]);
 
   return (
-    <div>
-      <svg ref={svgRef} />
+    <div className="horizontal-stacked-bar-wrapper">
+      <HorizontalStackedBarPanel />
+      <div className="horizontal-stacked-bar-right">
+        <svg ref={svgRef} />
+      </div>
     </div>
   );
 }

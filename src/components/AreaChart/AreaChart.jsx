@@ -1,5 +1,7 @@
 import React, { useRef, useEffect, useCallback, useState } from "react";
 import * as d3 from "d3";
+import AreaChartPanel from "./AreaChartPanel";
+import './AreaChart.scss';
 
 
 const AreaChart = ({
@@ -117,8 +119,11 @@ const AreaChart = ({
   }, [svgRef, createAreaGraph]);
 
   return (
-    <div>
-      <svg ref={svgRef} />
+    <div className="area-chart-wrapper">
+      <AreaChartPanel />
+      <div className="area-chart-right">
+        <svg ref={svgRef} />
+      </div>
     </div>
   );
 };

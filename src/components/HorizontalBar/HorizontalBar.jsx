@@ -1,5 +1,7 @@
 import React, { useEffect, useCallback, useRef } from 'react'
 import * as d3 from 'd3';
+import HorizontalBarPanel from "./HorizontalBarPanel";
+import './HorizontalBar.scss';
 
 const data = [
   { Country: 'US', Value: 100 },
@@ -69,8 +71,11 @@ const HorizontalBar = ({
   }, [svgRef, createGraph]);
 
   return (
-    <div>
-      <svg ref={svgRef} />
+    <div className="horizontal-bar-wrapper">
+      <HorizontalBarPanel />
+      <div className="horizontal-bar-right">
+        <svg ref={svgRef} />
+      </div>
     </div>
   )
 }

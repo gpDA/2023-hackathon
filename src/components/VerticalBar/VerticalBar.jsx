@@ -10,6 +10,9 @@ import {
     select
   } from "d3";
 
+import VerticalBarPanel from "./VerticalBarPanel";
+import './VerticalBar.scss';
+
 const AxisBottom = ({scale, transform}) => {
     const ref = useRef();
 
@@ -75,16 +78,21 @@ const VerticalBar = ({ data }) => {
       .range([height, 0]);
   
     return (
-      <svg
-        width={width + margin.left + margin.right}
-        height={height + margin.top + margin.bottom}
-      >
-        <g transform={`translate(${margin.left}, ${margin.top})`}>
-          <AxisBottom scale={scaleX} transform={`translate(0, ${height})`} />
-          <AxisLeft scale={scaleY} />
-          <Bars data={data} height={height} scaleX={scaleX} scaleY={scaleY} />
-        </g>
-      </svg>
+      <div className="vertical-bar-wrapper">
+        <VerticalBarPanel />
+        <div className="vertical-bar-right">
+            <svg
+            width={width + margin.left + margin.right}
+            height={height + margin.top + margin.bottom}
+          >
+            <g transform={`translate(${margin.left}, ${margin.top})`}>
+              <AxisBottom scale={scaleX} transform={`translate(0, ${height})`} />
+              <AxisLeft scale={scaleY} />
+              <Bars data={data} height={height} scaleX={scaleX} scaleY={scaleY} />
+            </g>
+          </svg>
+        </div>
+      </div>
     );
 }
 

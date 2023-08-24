@@ -33,38 +33,6 @@ const AREA_CHART_DATA = [
 
 
 function App() {
-  const test = [
-    {
-      id: 'test',
-      component: <HorizontalBar />,
-      imgSrc: '/horizontal-bar.png',
-    },
-    {
-      id: 'test1',
-      component: <VerticalBar data={BAR_CHART_DATA} />,
-      imgSrc: '/vertical-bar.png',
-    },
-    {
-      id: 'test1',
-      component: <VerticalStackedBar data={STACKED_BAR_CHART_DATA} />,
-      imgSrc: '/vertical-stacked-bar.png',
-    },
-    {
-      id: 'test1',
-      component: <HorizontalStackedBar />,
-      imgSrc: '/horizontal-stacked-bar.png',
-    },     
-    {
-      id: 'test1',
-      component: <AreaChart data={AREA_CHART_DATA} />,
-      imgSrc: '/area-chart.png',
-    },
-    {
-      id: 'test1',
-      component: <PieGraph data={BAR_CHART_DATA} dataKey="label" value="value"/>,
-      imgSrc: '/pie-graph.png',
-    },               
-  ]
 
   return (
     <div className="wrapper">
@@ -73,26 +41,11 @@ function App() {
           <Route path='/horizontal-bar' element={<HorizontalBar />}/>
           <Route path='/vertical-bar' element={<VerticalBar data={BAR_CHART_DATA} />}/>
           <Route path='/vertical-stacked-bar' element={<VerticalStackedBar data={STACKED_BAR_CHART_DATA}  />}/>
-          <Route path='/horizontal-stacked-bar' element={<HorizontalStackedBar />}/>
+          <Route path='/horizontal-stacked-bar' element={<HorizontalStackedBar data={STACKED_BAR_CHART_DATA}/>}/>
           <Route path='/area-chart' element={<AreaChart data={AREA_CHART_DATA} />}/>
           <Route path='/pie-graph' element={<PieGraph data={BAR_CHART_DATA} dataKey="label" value="value" />}/>
         </Route>
       </Routes>
-      {/* {
-        test.map((el) => (
-          <div className="box">
-            <div className="left-box">
-              <img src={process.env.PUBLIC_URL + el.imgSrc} />  
-            </div>
-            <div className="right-box">
-              {el.component}
-            </div>
-            
-          </div>
-        )
-        )
-      } */}
-      
     </div>
   );
 }

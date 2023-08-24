@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/components/HorizontalBar/HorizontalBarPanel.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1692911226937,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1692911233333,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import './HorizontalBarPanel.scss'\r\n \r\n const HorizontalBarPanel = () => {\r\n     return (\r\n-        <div className=\"area-chart-left\">\r\n+        <div className=\"horizontal-bar-left\">\r\n             hello HorizontalBarPanel\r\n         </div>\r\n     )\r\n };\r\n"
+                }
+            ],
+            "date": 1692911226937,
+            "name": "Commit-0",
+            "content": "import './HorizontalBarPanel.scss'\r\n\r\nconst HorizontalBarPanel = () => {\r\n    return (\r\n        <div className=\"area-chart-left\">\r\n            hello HorizontalBarPanel\r\n        </div>\r\n    )\r\n};\r\n\r\nexport default HorizontalBarPanel;"
+        }
+    ]
+}

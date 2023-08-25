@@ -37,13 +37,13 @@ function App() {
   return (
     <div className="wrapper">
       <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route path='/horizontal-bar' element={<HorizontalBar />}/>
-          <Route path='/vertical-bar' element={<VerticalBar data={BAR_CHART_DATA} />}/>
-          <Route path='/vertical-stacked-bar' element={<VerticalStackedBar data={STACKED_BAR_CHART_DATA}  />}/>
-          <Route path='/horizontal-stacked-bar' element={<HorizontalStackedBar data={STACKED_BAR_CHART_DATA}/>}/>
-          <Route path='/area-chart' element={<AreaChart data={AREA_CHART_DATA} />}/>
-          <Route path='/pie-graph' element={<PieGraph data={BAR_CHART_DATA} dataKey="label" value="value" />}/>
+        <Route path="/2023-hackathon" element={<Layout />}>
+          <Route path='horizontal-bar' element={<HorizontalBar />}/>
+          <Route path='vertical-bar' element={<VerticalBar data={BAR_CHART_DATA} />}/>
+          <Route path='vertical-stacked-bar' element={<VerticalStackedBar data={STACKED_BAR_CHART_DATA}  />}/>
+          <Route path='horizontal-stacked-bar' element={<HorizontalStackedBar data={STACKED_BAR_CHART_DATA}/>}/>
+          <Route path='area-chart' element={<AreaChart data={AREA_CHART_DATA} />}/>
+          <Route path='pie-graph' element={<PieGraph data={BAR_CHART_DATA} dataKey="label" value="value" />}/>
         </Route>
       </Routes>
     </div>

@@ -6,37 +6,37 @@ const sidebarNavItems = [
     {
         display: 'Horizontal Bar',
         icon: <i className='bx bx-home'></i>,
-        to: '/horizontal-bar',
+        to: '/2023-hackathon/horizontal-bar',
         section: ''
     },
     {
         display: 'Vertical Bar',
         icon: <i className='bx bx-star'></i>,
-        to: '/vertical-bar',
+        to: '/2023-hackathon/vertical-bar',
         section: 'started'
     },
     {
         display: 'Vertical Staked Bar',
         icon: <i className='bx bx-calendar'></i>,
-        to: '/vertical-stacked-bar',
+        to: '/2023-hackathon/vertical-stacked-bar',
         section: 'calendar'
     },
     {
         display: 'Horizontal Stacked Bar',
         icon: <i className='bx bx-user'></i>,
-        to: '/horizontal-stacked-bar',
+        to: '/2023-hackathon/horizontal-stacked-bar',
         section: 'user'
     },
     {
         display: 'Area Chart',
         icon: <i className='bx bx-receipt'></i>,
-        to: '/area-chart',
+        to: '/2023-hackathon/area-chart',
         section: 'order'
     },
     {
         display: 'Pie Graph',
         icon: <i className='bx bx-receipt'></i>,
-        to: '/pie-graph',
+        to: '/2023-hackathon/pie-graph',
         section: 'order'
     },    
 ]

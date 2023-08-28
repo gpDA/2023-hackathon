@@ -3,11 +3,51 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 10,
             "patches": [
                 {
                     "date": 1692909998128,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1692993892816,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,12 @@\n import './VerticalBarPanel.scss'\r\n+import ToggleButton from '../utils/ToggleButton/ToggleButton';\r\n \r\n const VerticalBarPanel = () => {\r\n     return (\r\n         <div className=\"vertical-bar-left\">\r\n             hello VerticalBarPanel\r\n+            <ToggleButton />\r\n         </div>\r\n     )\r\n };\r\n \r\n"
+                },
+                {
+                    "date": 1692994193149,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,21 @@\n+import './VerticalBarPanel.scss'\r\n+import ToggleButton from '../utils/ToggleButton/ToggleButton';\r\n+\r\n+const VerticalBarPanel = () => {\r\n+    const logState = state => {\r\n+        console.log(\"Toggled:\", state)\r\n+    }\r\n+\r\n+    return (\r\n+        <div className=\"vertical-bar-left\">\r\n+            hello VerticalBarPanel\r\n+            <ToggleButton\r\n+                label=\"Toggle me\"\r\n+                toggled={true}\r\n+                onClick={logState}            \r\n+            />\r\n+        </div>\r\n+    )\r\n+};\r\n+\r\n+export default VerticalBarPanel;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1692994199779,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,21 @@\n+import './VerticalBarPanel.scss'\r\n+import ToggleButton from '../utils/ToggleButton/ToggleButton';\r\n+\r\n+const VerticalBarPanel = () => {\r\n+    const logState = state => {\r\n+        console.log(\"Toggled:\", state)\r\n+    }\r\n+\r\n+    return (\r\n+        <div className=\"vertical-bar-left\">\r\n+            hello VerticalBarPanel\r\n+            <ToggleButton\r\n+                label=\"Toggle me\"\r\n+                toggled={true}\r\n+                onClick={logState}            \r\n+            />\r\n+        </div>\r\n+    )\r\n+};\r\n+\r\n+export default VerticalBarPanel;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1692994261707,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,39 +17,5 @@\n         </div>\r\n     )\r\n };\r\n \r\n-export default VerticalBarPanel;\n-import './VerticalBarPanel.scss'\r\n-import ToggleButton from '../utils/ToggleButton/ToggleButton';\r\n-\r\n-const VerticalBarPanel = () => {\r\n-    const logState = state => {\r\n-        console.log(\"Toggled:\", state)\r\n-    }\r\n-\r\n-    return (\r\n-        <div className=\"vertical-bar-left\">\r\n-            hello VerticalBarPanel\r\n-            <ToggleButton\r\n-                label=\"Toggle me\"\r\n-                toggled={true}\r\n-                onClick={logState}            \r\n-            />\r\n-        </div>\r\n-    )\r\n-};\r\n-\r\n-export default VerticalBarPanel;\n-import './VerticalBarPanel.scss'\r\n-import ToggleButton from '../utils/ToggleButton/ToggleButton';\r\n-\r\n-const VerticalBarPanel = () => {\r\n-    return (\r\n-        <div className=\"vertical-bar-left\">\r\n-            hello VerticalBarPanel\r\n-            <ToggleButton />\r\n-        </div>\r\n-    )\r\n-};\r\n-\r\n export default VerticalBarPanel;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1692994270440,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,22 @@\n+import './VerticalBarPanel.scss'\r\n+import ToggleButton from '../utils/ToggleButton/ToggleButton';\r\n+\r\n+const VerticalBarPanel = () => {\r\n+    const logState = state => {\r\n+        console.log(\"Toggled:\", state)\r\n+    }\r\n+\r\n+    return (\r\n+        <div className=\"vertical-bar-left\">\r\n+            hello VerticalBarPanel dfsdsf\r\n+            <br />\r\n+            <ToggleButton\r\n+                label=\"Toggle me\"\r\n+                toggled={true}\r\n+                onClick={logState}            \r\n+            />\r\n+        </div>\r\n+    )\r\n+};\r\n+\r\n+export default VerticalBarPanel;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1692994519060,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,9 @@\n import './VerticalBarPanel.scss'\r\n import ToggleButton from '../utils/ToggleButton/ToggleButton';\r\n \r\n const VerticalBarPanel = () => {\r\n-    const logState = state => {\r\n-        console.log(\"Toggled:\", state)\r\n-    }\r\n+    const [test, setTest] = useState(\"yes\");\r\n \r\n     return (\r\n         <div className=\"vertical-bar-left\">\r\n             hello VerticalBarPanel dfsdsf\r\n@@ -18,26 +16,5 @@\n         </div>\r\n     )\r\n };\r\n \r\n-export default VerticalBarPanel;\n-import './VerticalBarPanel.scss'\r\n-import ToggleButton from '../utils/ToggleButton/ToggleButton';\r\n-\r\n-const VerticalBarPanel = () => {\r\n-    const logState = state => {\r\n-        console.log(\"Toggled:\", state)\r\n-    }\r\n-\r\n-    return (\r\n-        <div className=\"vertical-bar-left\">\r\n-            hello VerticalBarPanel\r\n-            <ToggleButton\r\n-                label=\"Toggle me\"\r\n-                toggled={true}\r\n-                onClick={logState}            \r\n-            />\r\n-        </div>\r\n-    )\r\n-};\r\n-\r\n export default VerticalBarPanel;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1692994530839,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,21 @@\n+import { useState } from 'react'\r\n+import './VerticalBarPanel.scss'\r\n+import ToggleButton from '../utils/ToggleButton/ToggleButton';\r\n+\r\n+const VerticalBarPanel = () => {\r\n+    const [test, setTest] = useState(\"yes\");\r\n+\r\n+    return (\r\n+        <div className=\"vertical-bar-left\">\r\n+            hello VerticalBarPanel dfsdsf\r\n+            <br />\r\n+            <ToggleButton\r\n+                label=\"Toggle me\"\r\n+                toggled={true}\r\n+                onClick={logState}            \r\n+            />\r\n+        </div>\r\n+    )\r\n+};\r\n+\r\n+export default VerticalBarPanel;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1692994539216,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,21 @@\n+import { useState } from 'react';\r\n+import './VerticalBarPanel.scss'\r\n+import ToggleButton from '../utils/ToggleButton/ToggleButton';\r\n+\r\n+const VerticalBarPanel = () => {\r\n+    const [test, setTest] = useState(\"yes\");\r\n+\r\n+    return (\r\n+        <div className=\"vertical-bar-left\">\r\n+            hello VerticalBarPanel dfsdsf\r\n+            <br />\r\n+            <ToggleButton\r\n+                label=\"Toggle me\"\r\n+                toggled={true}\r\n+                onClick={logState}            \r\n+            />\r\n+        </div>\r\n+    )\r\n+};\r\n+\r\n+export default VerticalBarPanel;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1692994621952,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,5 +16,12 @@\n             hello VerticalBarPanel dfsdsf\r\n             <br />\r\n             <ToggleButton\r\n                 label=\"Toggle me\"\r\n-                toggled={t\n\\ No newline at end of file\n+                toggled={true}\r\n+                onClick={toggleCB}            \r\n+            />\r\n+        </div>\r\n+    )\r\n+};\r\n+\r\n+export default VerticalBarPanel;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1692994639068,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,25 @@\n+import { useState } from 'react'\r\n+import './VerticalBarPanel.scss'\r\n+import ToggleButton from '../utils/ToggleButton/ToggleButton';\r\n+\r\n+const VerticalBarPanel = () => {\r\n+    const [test, setTest] = useState('yes');\r\n+    \r\n+    const toggleCB = toggleState => {\r\n+        console.log(\"Toggled:\", toggleState)\r\n+    }\r\n+\r\n+    return (\r\n+        <div className=\"vertical-bar-left\">\r\n+            hello VerticalBarPanel dfsdsf\r\n+            <br />\r\n+            <ToggleButton\r\n+                label=\"Toggle me\"\r\n+                toggled={true}\r\n+                onClick={toggleCB}            \r\n+            />\r\n+        </div>\r\n+    )\r\n+};\r\n+\r\n+export default VerticalBarPanel;\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1692909998128,

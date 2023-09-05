@@ -1,4 +1,5 @@
 import './App.scss';
+import React, { useMemo, useEffect, useCallback, useRef, useState } from 'react'
 import HorizontalBar from "./components/HorizontalBar/HorizontalBar";
 import VerticalBar from "./components/VerticalBar/VerticalBar";
 import HorizontalStackedBar from "./components/HorizontalStackedBar/HorizontalStackedBar";
@@ -7,6 +8,13 @@ import AreaChart from "./components/AreaChart/AreaChart";
 import PieGraph from "./components/PieGraph/PieGraph";
 import Sidebar from "./components/Sidebar/Sidebar";
 import { Routes, Route, Outlet, Link } from "react-router-dom";
+
+const defaultData = [
+  { Country: 'US', Value: 100 },
+  { Country: 'S. Korea', Value: 85 },
+  { Country: 'Italy', Value: 72 },
+  { Country: 'Japan', Value: 80 },
+]
 
 const BAR_CHART_DATA = [
   { label: "Apples", value: 100 },
@@ -34,11 +42,26 @@ const AREA_CHART_DATA = [
 
 function App() {
 
+  const [data, setDataCB] = useState(defaultData);
+
+  // TADA: WORKING NOW - drag and drop - make 
+  const setData = (file) => {
+    console.log('setData', file)
+    setDataCB(
+      [
+        { Country: 'USA', Value: 80 },
+        { Country: 'S. Korea', Value: 85 },
+        { Country: 'Italy', Value: 72 },
+        { Country: 'Japan', Value: 80 },
+      ]
+    )
+  }  
+
   return (
     <div className="wrapper">
       <Routes>
         <Route path="/2023-hackathon" element={<Layout />}>
-          <Route path='horizontal-bar' element={<HorizontalBar />}/>
+          <Route path='horizontal-bar' element={<HorizontalBar data={data} setDataCB={setData} />}/>
           <Route path='vertical-bar' element={<VerticalBar data={BAR_CHART_DATA} />}/>
           <Route path='vertical-stacked-bar' element={<VerticalStackedBar data={STACKED_BAR_CHART_DATA}  />}/>
           <Route path='horizontal-stacked-bar' element={<HorizontalStackedBar data={STACKED_BAR_CHART_DATA}/>}/>

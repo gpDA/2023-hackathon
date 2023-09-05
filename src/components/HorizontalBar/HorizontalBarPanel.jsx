@@ -1,23 +1,35 @@
 import './HorizontalBarPanel.scss';
 import Cell from '../Cell/Cell';
 import ToggleButton from '../utils/ToggleButton/ToggleButton';
+import { FileUploader } from "react-drag-drop-files"; // in case, drag & drop file is useful
 
-const HorizontalBarPanel = () => {
+const HorizontalBarPanel = ({setDataCB}) => {
     const toggleCB = toggleState => {
         // false | true
     }
 
     return (
         <div className="horizontal-bar-left">
-            hello HorizontalBarPanel
+            {/* in case, drag & drop file is useful */}
+            {/* <Cell title={'cell-title'}>
+                <FileUploader handleChange={setDataCB} name="files" types={["JPG", "PNG", "GIF"]} />
+            </Cell>             */}
 
             <Cell title={'cell-title'}>
+                <button
+                    onClick={() => setDataCB('test')}
+                >
+                    I am test button
+                </button>
+            </Cell>            
+
+            {/* <Cell title={'cell-title'}>
                 <ToggleButton 
                     label="Toggle me"
                     toggled={true}
                     onClick={toggleCB}
                 />
-            </Cell>
+            </Cell> */}
         </div>
     )
 };

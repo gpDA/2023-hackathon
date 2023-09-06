@@ -28,6 +28,25 @@ const HorizontalBar = ({
       ]
     ))
 
+    const printButtonLabel = (event) => {
+      const {name} = event.target;
+      console.log('>>> name', name);
+
+      if (name === 'right') {
+
+      }
+      if (name === 'top') {
+          
+      }
+      if (name === 'left') {
+          
+      }
+      if (name === 'bottom') {
+          
+      }                        
+      //do some stuff here
+    };    
+
   const drawSvg = useCallback(
     (div) => {
       const svg = d3
@@ -83,7 +102,7 @@ const HorizontalBar = ({
 
   return (
     <div className="horizontal-bar-wrapper">
-      <HorizontalBarPanel setDataCB={setDataCB} />
+      <HorizontalBarPanel printButtonLabel={printButtonLabel} setDataCB={setDataCB} />
       <div className="horizontal-bar-right">
         <svg ref={svgRef} />
       </div>

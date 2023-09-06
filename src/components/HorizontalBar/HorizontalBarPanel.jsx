@@ -1,9 +1,10 @@
 import './HorizontalBarPanel.scss';
 import Cell from '../Cell/Cell';
 import ToggleButton from '../utils/ToggleButton/ToggleButton';
+import GroupButton from '../utils/GroupButton/GroupButton';
 import { FileUploader } from "react-drag-drop-files"; // in case, drag & drop file is useful
 
-const HorizontalBarPanel = ({setDataCB}) => {
+const HorizontalBarPanel = ({rotateId, rotateButtonGroupCB, setDataCB}) => {
     const toggleCB = toggleState => {
         // false | true
     }
@@ -21,7 +22,17 @@ const HorizontalBarPanel = ({setDataCB}) => {
                 >
                     I am test button
                 </button>
+            </Cell>
+
+            <Cell title={'rotate'}>
+                <GroupButton
+                    buttons={["right", "top", "left", "bottom"]}
+                    rotateButtonGroupCB={rotateButtonGroupCB}
+                    rotateId={rotateId}
+                />
             </Cell>            
+
+            GroupButton
 
             {/* <Cell title={'cell-title'}>
                 <ToggleButton 

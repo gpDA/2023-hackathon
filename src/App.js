@@ -55,7 +55,7 @@ function App() {
         { Country: 'Japan', Value: 80 },
       ]
     )
-  }  
+  }
 
   return (
     <div className="wrapper">

@@ -2,8 +2,7 @@ import './App.scss';
 import React, { useMemo, useEffect, useCallback, useRef, useState } from 'react'
 import HorizontalBar from "./components/HorizontalBar/HorizontalBar";
 import VerticalBar from "./components/VerticalBar/VerticalBar";
-import HorizontalStackedBar from "./components/HorizontalStackedBar/HorizontalStackedBar";
-import VerticalStackedBar from "./components/VeritcalStackedBar/VerticalStackedBar";
+import StackedBar from "./components/StackedBar/StackedBar";
 import AreaChart from "./components/AreaChart/AreaChart";
 import PieGraph from "./components/PieGraph/PieGraph";
 import Sidebar from "./components/Sidebar/Sidebar";
@@ -63,8 +62,7 @@ function App() {
         <Route path="/2023-hackathon" element={<Layout />}>
           <Route path='horizontal-bar' element={<HorizontalBar data={data} setDataCB={setData} />}/>
           <Route path='vertical-bar' element={<VerticalBar data={BAR_CHART_DATA} />}/>
-          <Route path='vertical-stacked-bar' element={<VerticalStackedBar data={STACKED_BAR_CHART_DATA}  />}/>
-          <Route path='horizontal-stacked-bar' element={<HorizontalStackedBar data={STACKED_BAR_CHART_DATA}/>}/>
+          <Route path='stacked-bar' element={<StackedBar data={STACKED_BAR_CHART_DATA}/>}/>
           <Route path='area-chart' element={<AreaChart data={AREA_CHART_DATA} />}/>
           <Route path='pie-graph' element={<PieGraph data={BAR_CHART_DATA} dataKey="label" value="value" />}/>
         </Route>

@@ -16,15 +16,9 @@ const sidebarNavItems = [
         section: 'started'
     },
     {
-        display: 'Vertical Staked Bar',
-        icon: <i className='bx bx-calendar'></i>,
-        to: '/2023-hackathon/vertical-stacked-bar',
-        section: 'calendar'
-    },
-    {
-        display: 'Horizontal Stacked Bar',
+        display: 'Stacked Bar',
         icon: <i className='bx bx-user'></i>,
-        to: '/2023-hackathon/horizontal-stacked-bar',
+        to: '/2023-hackathon/stacked-bar',
         section: 'user'
     },
     {

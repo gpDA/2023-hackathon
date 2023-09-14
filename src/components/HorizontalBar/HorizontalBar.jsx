@@ -95,7 +95,7 @@ const HorizontalBar = ({
     if (rotateId === 1) {
       attr.widthLength = height + margin + 100;
       attr.heightLength = width + margin + 100;
-      attr.svgTransform = `translate(${margin + 30},${margin / 2 + 60})`;
+      attr.svgTransform = `translate(${margin + 30},${margin / 2 + 20})`;
       attr.axisY = x;
       attr.axisX = y;
       attr.axisXFunctionName = 'axisTop',
@@ -127,14 +127,14 @@ const HorizontalBar = ({
     if (rotateId === 3) {
       attr.widthLength = height + margin + 100;
       attr.heightLength = width + margin + 100;
-      attr.svgTransform = `translate(${margin + 30},${margin / 2 + 60})`;
+      attr.svgTransform = `translate(${margin + 30},${margin / 2})`;
       attr.axisY = x;
       attr.axisX = y;
       attr.axisXFunctionName = 'axisBottom',
-      attr.axisYFunctionName = 'axisRight',
+      attr.axisYFunctionName = 'axisLeft',
       attr.axisYTransform = `translate(0, ${height+100})`;
       attr.axisXTransform = "translate(+10,0)rotate(0)";
-      attr.axisXLeftRotateTransform = `translate(${width-100}, 0)`;
+      attr.axisXLeftRotateTransform = `translate(0, 0)`;
       attr.rectX = function(d) { return y(d.Country); }; // d.Country
       attr.rectY = function (d) { return x(d.Value) }; // height + 100 - x(d.Value)
       attr.rectWidth = function () { return y.bandwidth()};
@@ -150,17 +150,18 @@ const HorizontalBar = ({
   const drawSvg = useCallback(
     (div) => {
       d3.selectAll(".test2").remove();
+      
       const svg = d3
         .select(div)
         .attr("width", rotateAttr.widthLength)
         .attr("height", rotateAttr.heightLength)
         .append("g")
         .attr('class', 'test2')
-        .attr("transform", rotateAttr.svgTransform);
+        .attr("transform", rotateAttr.svgTransform); // rotateAttr.svgTransform
 
       return svg;
     },
-    [height, width, margin, rotateId]
+    [height, width, rotateAttr]
   );
 
   const createGraph = (div) => {

@@ -2,9 +2,13 @@ import './HorizontalBarPanel.scss';
 import Cell from '../Cell/Cell';
 import ToggleButton from '../utils/ToggleButton/ToggleButton';
 import GroupButton from '../utils/GroupButton/GroupButton';
+import InputGroup from '../utils/InputGroup/InputGroup';
 import { FileUploader } from "react-drag-drop-files"; // in case, drag & drop file is useful
 
-const HorizontalBarPanel = ({rotateId, rotateButtonGroupCB, setDataCB}) => {
+const HorizontalBarPanel = ({
+    rotateId, rotateButtonGroupCB, 
+    marginInputGroupCB, marginValue, 
+    setDataCB}) => {
     const toggleCB = toggleState => {
         // false | true
     }
@@ -30,9 +34,15 @@ const HorizontalBarPanel = ({rotateId, rotateButtonGroupCB, setDataCB}) => {
                     rotateButtonGroupCB={rotateButtonGroupCB}
                     rotateId={rotateId}
                 />
-            </Cell>            
+            </Cell>
 
-            GroupButton
+            <Cell title={'margin'}>
+                <InputGroup
+                    inputs={["right", "top", "left", "bottom"]}
+                    marginInputGroupCB={marginInputGroupCB}
+                    marginValue={marginValue}
+                />
+            </Cell>            
 
             {/* <Cell title={'cell-title'}>
                 <ToggleButton 

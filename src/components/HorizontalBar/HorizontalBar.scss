@@ -6,3 +6,21 @@
     // background-color: blue;
     flex: 1;
 }
+
+.svg-container {
+    display: inline-block;
+    position: relative;
+    // width: 100%;
+    // padding-bottom: 100%; /* aspect ratio */
+    vertical-align: top;
+    overflow: hidden;
+    background-color: blue;
+    width: calc(100% - 60px); // finding: container needs to be responsive to make the svg responsive
+    // height: calc(100% - 60px);
+}
+.svg-content-responsive {
+    display: inline-block;
+    // position: absolute;
+    // top: 10px;
+    left: 0;
+}

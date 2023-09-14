@@ -3,11 +3,99 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 22,
             "patches": [
                 {
                     "date": 1693253479174,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1694701170973,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,5 +4,8 @@\n }\r\n .horizontal-bar-right {\r\n     // background-color: blue;\r\n     flex: 1;\r\n+    .svg-wrapper {\r\n+\r\n+    }\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1694701179426,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,5 @@\n }\r\n .horizontal-bar-right {\r\n     // background-color: blue;\r\n     flex: 1;\r\n-    .svg-wrapper {\r\n-\r\n-    }\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1694702270075,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,23 @@\n+.horizontal-bar-wrapper {\r\n+    display: flex;\r\n+    height: 100vh;\r\n+}\r\n+.horizontal-bar-right {\r\n+    // background-color: blue;\r\n+    flex: 1;\r\n+}\r\n+\r\n+.svg-container {\r\n+    display: inline-block;\r\n+    position: relative;\r\n+    width: 100%;\r\n+    padding-bottom: 100%; /* aspect ratio */\r\n+    vertical-align: top;\r\n+    overflow: hidden;\r\n+}\r\n+.svg-content-responsive {\r\n+    display: inline-block;\r\n+    position: absolute;\r\n+    top: 10px;\r\n+    left: 0;\r\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1694702323817,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,23 @@\n+.horizontal-bar-wrapper {\r\n+    display: flex;\r\n+    height: 100vh;\r\n+}\r\n+.horizontal-bar-right {\r\n+    // background-color: blue;\r\n+    flex: 1;\r\n+}\r\n+\r\n+.svg-container {\r\n+    display: inline-block;\r\n+    position: relative;\r\n+    width: 100%;\r\n+    padding-bottom: 100%; /* aspect ratio */\r\n+    vertical-align: top;\r\n+    overflow: hidden;\r\n+}\r\n+.svg-content-responsive {\r\n+    display: inline-block;\r\n+    // position: absolute;\r\n+    top: 10px;\r\n+    left: 0;\r\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1694702331197,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,23 @@\n+.horizontal-bar-wrapper {\r\n+    display: flex;\r\n+    height: 100vh;\r\n+}\r\n+.horizontal-bar-right {\r\n+    // background-color: blue;\r\n+    flex: 1;\r\n+}\r\n+\r\n+.svg-container {\r\n+    display: inline-block;\r\n+    position: relative;\r\n+    width: 100%;\r\n+    padding-bottom: 100%; /* aspect ratio */\r\n+    vertical-align: top;\r\n+    overflow: hidden;\r\n+}\r\n+.svg-content-responsive {\r\n+    display: inline-block;\r\n+    // position: absolute;\r\n+    // top: 10px;\r\n+    left: 0;\r\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1694702340646,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,59 +19,5 @@\n     display: inline-block;\r\n     // position: absolute;\r\n     // top: 10px;\r\n     left: 0;\r\n-}\n-.horizontal-bar-wrapper {\r\n-    display: flex;\r\n-    height: 100vh;\r\n-}\r\n-.horizontal-bar-right {\r\n-    // background-color: blue;\r\n-    flex: 1;\r\n-}\r\n-\r\n-.svg-container {\r\n-    display: inline-block;\r\n-    position: relative;\r\n-    width: 100%;\r\n-    padding-bottom: 100%; /* aspect ratio */\r\n-    vertical-align: top;\r\n-    overflow: hidden;\r\n-}\r\n-.svg-content-responsive {\r\n-    display: inline-block;\r\n-    // position: absolute;\r\n-    top: 10px;\r\n-    left: 0;\r\n-}\n-.horizontal-bar-wrapper {\r\n-    display: flex;\r\n-    height: 100vh;\r\n-}\r\n-.horizontal-bar-right {\r\n-    // background-color: blue;\r\n-    flex: 1;\r\n-}\r\n-\r\n-.svg-container {\r\n-    display: inline-block;\r\n-    position: relative;\r\n-    width: 100%;\r\n-    padding-bottom: 100%; /* aspect ratio */\r\n-    vertical-align: top;\r\n-    overflow: hidden;\r\n-}\r\n-.svg-content-responsive {\r\n-    display: inline-block;\r\n-    position: absolute;\r\n-    top: 10px;\r\n-    left: 0;\r\n-}\n-.horizontal-bar-wrapper {\r\n-    display: flex;\r\n-    height: 100vh;\r\n-}\r\n-.horizontal-bar-right {\r\n-    // background-color: blue;\r\n-    flex: 1;\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1694702357382,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n .svg-container {\r\n     display: inline-block;\r\n     position: relative;\r\n     width: 100%;\r\n-    padding-bottom: 100%; /* aspect ratio */\r\n+    // padding-bottom: 100%; /* aspect ratio */\r\n     vertical-align: top;\r\n     overflow: hidden;\r\n }\r\n .svg-content-responsive {\r\n"
+                },
+                {
+                    "date": 1694702781204,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,10 @@\n     width: 100%;\r\n     // padding-bottom: 100%; /* aspect ratio */\r\n     vertical-align: top;\r\n     overflow: hidden;\r\n+    background-color: blue;\r\n+    height: 700px;\r\n }\r\n .svg-content-responsive {\r\n     display: inline-block;\r\n     // position: absolute;\r\n"
+                },
+                {
+                    "date": 1694702799837,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     // padding-bottom: 100%; /* aspect ratio */\r\n     vertical-align: top;\r\n     overflow: hidden;\r\n     background-color: blue;\r\n-    height: 700px;\r\n+    // height: 700px;\r\n }\r\n .svg-content-responsive {\r\n     display: inline-block;\r\n     // position: absolute;\r\n"
+                },
+                {
+                    "date": 1694702808970,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     // padding-bottom: 100%; /* aspect ratio */\r\n     vertical-align: top;\r\n     overflow: hidden;\r\n     background-color: blue;\r\n-    // height: 700px;\r\n+    height: 700px;\r\n }\r\n .svg-content-responsive {\r\n     display: inline-block;\r\n     // position: absolute;\r\n"
+                },
+                {
+                    "date": 1694702929047,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,14 +9,15 @@\n \r\n .svg-container {\r\n     display: inline-block;\r\n     position: relative;\r\n-    width: 100%;\r\n+    // width: 100%;\r\n     // padding-bottom: 100%; /* aspect ratio */\r\n     vertical-align: top;\r\n     overflow: hidden;\r\n     background-color: blue;\r\n-    height: 700px;\r\n+    width: 6vw;\r\n+    height: 6vw;\r\n }\r\n .svg-content-responsive {\r\n     display: inline-block;\r\n     // position: absolute;\r\n"
+                },
+                {
+                    "date": 1694702949075,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,26 @@\n+.horizontal-bar-wrapper {\r\n+    display: flex;\r\n+    height: 100vh;\r\n+}\r\n+.horizontal-bar-right {\r\n+    // background-color: blue;\r\n+    flex: 1;\r\n+}\r\n+\r\n+.svg-container {\r\n+    display: inline-block;\r\n+    position: relative;\r\n+    // width: 100%;\r\n+    // padding-bottom: 100%; /* aspect ratio */\r\n+    vertical-align: top;\r\n+    overflow: hidden;\r\n+    background-color: blue;\r\n+    width: 10vw;\r\n+    height: 50vw;\r\n+}\r\n+.svg-content-responsive {\r\n+    display: inline-block;\r\n+    // position: absolute;\r\n+    // top: 10px;\r\n+    left: 0;\r\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1694703153567,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,26 @@\n+.horizontal-bar-wrapper {\r\n+    display: flex;\r\n+    height: 100vh;\r\n+}\r\n+.horizontal-bar-right {\r\n+    // background-color: blue;\r\n+    flex: 1;\r\n+}\r\n+\r\n+.svg-container {\r\n+    display: inline-block;\r\n+    position: relative;\r\n+    // width: 100%;\r\n+    // padding-bottom: 100%; /* aspect ratio */\r\n+    vertical-align: top;\r\n+    overflow: hidden;\r\n+    background-color: blue;\r\n+    width: 50vw;\r\n+    height: 50vw;\r\n+}\r\n+.svg-content-responsive {\r\n+    display: inline-block;\r\n+    // position: absolute;\r\n+    // top: 10px;\r\n+    left: 0;\r\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1694704971296,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,57 +22,5 @@\n     display: inline-block;\r\n     // position: absolute;\r\n     // top: 10px;\r\n     left: 0;\r\n-}\n-.horizontal-bar-wrapper {\r\n-    display: flex;\r\n-    height: 100vh;\r\n-}\r\n-.horizontal-bar-right {\r\n-    // background-color: blue;\r\n-    flex: 1;\r\n-}\r\n-\r\n-.svg-container {\r\n-    display: inline-block;\r\n-    position: relative;\r\n-    // width: 100%;\r\n-    // padding-bottom: 100%; /* aspect ratio */\r\n-    vertical-align: top;\r\n-    overflow: hidden;\r\n-    background-color: blue;\r\n-    width: 10vw;\r\n-    height: 50vw;\r\n-}\r\n-.svg-content-responsive {\r\n-    display: inline-block;\r\n-    // position: absolute;\r\n-    // top: 10px;\r\n-    left: 0;\r\n-}\n-.horizontal-bar-wrapper {\r\n-    display: flex;\r\n-    height: 100vh;\r\n-}\r\n-.horizontal-bar-right {\r\n-    // background-color: blue;\r\n-    flex: 1;\r\n-}\r\n-\r\n-.svg-container {\r\n-    display: inline-block;\r\n-    position: relative;\r\n-    // width: 100%;\r\n-    // padding-bottom: 100%; /* aspect ratio */\r\n-    vertical-align: top;\r\n-    overflow: hidden;\r\n-    background-color: blue;\r\n-    width: 6vw;\r\n-    height: 6vw;\r\n-}\r\n-.svg-content-responsive {\r\n-    display: inline-block;\r\n-    // position: absolute;\r\n-    // top: 10px;\r\n-    left: 0;\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1694712275262,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,10 +14,10 @@\n     // padding-bottom: 100%; /* aspect ratio */\r\n     vertical-align: top;\r\n     overflow: hidden;\r\n     background-color: blue;\r\n-    width: 50vw;\r\n-    height: 50vw;\r\n+    width: calc(100%- 60px);\r\n+    height: calc(100% - 60px);\r\n }\r\n .svg-content-responsive {\r\n     display: inline-block;\r\n     // position: absolute;\r\n"
+                },
+                {
+                    "date": 1694712285539,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,26 @@\n+.horizontal-bar-wrapper {\r\n+    display: flex;\r\n+    height: 100vh;\r\n+}\r\n+.horizontal-bar-right {\r\n+    // background-color: blue;\r\n+    flex: 1;\r\n+}\r\n+\r\n+.svg-container {\r\n+    display: inline-block;\r\n+    position: relative;\r\n+    // width: 100%;\r\n+    // padding-bottom: 100%; /* aspect ratio */\r\n+    vertical-align: top;\r\n+    overflow: hidden;\r\n+    background-color: blue;\r\n+    width: calc(100% - 60px);\r\n+    height: calc(100% - 60px);\r\n+}\r\n+.svg-content-responsive {\r\n+    display: inline-block;\r\n+    // position: absolute;\r\n+    // top: 10px;\r\n+    left: 0;\r\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1694712316877,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,26 @@\n+.horizontal-bar-wrapper {\r\n+    display: flex;\r\n+    height: 100vh;\r\n+}\r\n+.horizontal-bar-right {\r\n+    // background-color: blue;\r\n+    flex: 1;\r\n+}\r\n+\r\n+.svg-container {\r\n+    display: inline-block;\r\n+    position: relative;\r\n+    // width: 100%;\r\n+    // padding-bottom: 100%; /* aspect ratio */\r\n+    vertical-align: top;\r\n+    overflow: hidden;\r\n+    background-color: blue;\r\n+    width: calc(100% - 60px);\r\n+    height: calc(100% - 60px);\r\n+}\r\n+.svg-content-responsive {\r\n+    display: inline-block;\r\n+    // position: absolute;\r\n+    // top: 10px;\r\n+    left: 0;\r\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1694712613339,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,57 +22,5 @@\n     display: inline-block;\r\n     // position: absolute;\r\n     // top: 10px;\r\n     left: 0;\r\n-}\n-.horizontal-bar-wrapper {\r\n-    display: flex;\r\n-    height: 100vh;\r\n-}\r\n-.horizontal-bar-right {\r\n-    // background-color: blue;\r\n-    flex: 1;\r\n-}\r\n-\r\n-.svg-container {\r\n-    display: inline-block;\r\n-    position: relative;\r\n-    // width: 100%;\r\n-    // padding-bottom: 100%; /* aspect ratio */\r\n-    vertical-align: top;\r\n-    overflow: hidden;\r\n-    background-color: blue;\r\n-    width: calc(100% - 60px);\r\n-    height: calc(100% - 60px);\r\n-}\r\n-.svg-content-responsive {\r\n-    display: inline-block;\r\n-    // position: absolute;\r\n-    // top: 10px;\r\n-    left: 0;\r\n-}\n-.horizontal-bar-wrapper {\r\n-    display: flex;\r\n-    height: 100vh;\r\n-}\r\n-.horizontal-bar-right {\r\n-    // background-color: blue;\r\n-    flex: 1;\r\n-}\r\n-\r\n-.svg-container {\r\n-    display: inline-block;\r\n-    position: relative;\r\n-    // width: 100%;\r\n-    // padding-bottom: 100%; /* aspect ratio */\r\n-    vertical-align: top;\r\n-    overflow: hidden;\r\n-    background-color: blue;\r\n-    width: calc(100%- 60px);\r\n-    height: calc(100% - 60px);\r\n-}\r\n-.svg-content-responsive {\r\n-    display: inline-block;\r\n-    // position: absolute;\r\n-    // top: 10px;\r\n-    left: 0;\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1694713969088,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n     vertical-align: top;\r\n     overflow: hidden;\r\n     background-color: blue;\r\n     width: calc(100% - 60px);\r\n-    height: calc(100% - 60px);\r\n+    // height: calc(100% - 60px);\r\n }\r\n .svg-content-responsive {\r\n     display: inline-block;\r\n     // position: absolute;\r\n"
+                },
+                {
+                    "date": 1694718445167,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,26 @@\n+.horizontal-bar-wrapper {\r\n+    display: flex;\r\n+    height: 100vh;\r\n+}\r\n+.horizontal-bar-right {\r\n+    // background-color: blue;\r\n+    flex: 1;\r\n+}\r\n+\r\n+.svg-container {\r\n+    display: inline-block;\r\n+    position: relative;\r\n+    // width: 100%;\r\n+    // padding-bottom: 100%; /* aspect ratio */\r\n+    vertical-align: top;\r\n+    overflow: hidden;\r\n+    background-color: blue;\r\n+    width: calc(100% - 60px);\r\n+    height: calc(100% - 60px);\r\n+}\r\n+.svg-content-responsive {\r\n+    display: inline-block;\r\n+    // position: absolute;\r\n+    // top: 10px;\r\n+    left: 0;\r\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1694718501437,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     // padding-bottom: 100%; /* aspect ratio */\r\n     vertical-align: top;\r\n     overflow: hidden;\r\n     background-color: blue;\r\n-    width: calc(100% - 60px);\r\n+    width: calc(100% - 60px); // finding: container needs to be responsive to make the svg responsive\r\n     // height: calc(100% - 60px);\r\n }\r\n .svg-content-responsive {\r\n     display: inline-block;\r\n"
+                },
+                {
+                    "date": 1694721959408,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,26 @@\n+.horizontal-bar-wrapper {\r\n+    display: flex;\r\n+    height: 100vh;\r\n+}\r\n+.horizontal-bar-right {\r\n+    // background-color: blue;\r\n+    flex: 1;\r\n+}\r\n+\r\n+.svg-container {\r\n+    display: inline-block;\r\n+    position: relative;\r\n+    // width: 100%;\r\n+    // padding-bottom: 100%; /* aspect ratio */\r\n+    vertical-align: top;\r\n+    overflow: hidden;\r\n+    background-color: blue;\r\n+    width: calc(100% - 60px); // finding: container needs to be responsive to make the svg responsive\r\n+    // height: calc(100% - 60px);\r\n+}\r\n+.svg-content-responsive {\r\n+    display: inline-block;\r\n+    // position: absolute;\r\n+    // top: 10px;\r\n+    left: 0;\r\n+}\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1693253479174,

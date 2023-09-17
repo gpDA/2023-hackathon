@@ -30,6 +30,8 @@ const HorizontalBar = ({
 
   // right: 0, top: 1, left: 2, bottom: 3
   const [rotateId, setRotateId] = useState(0);
+  const [maxValue, setMaxValue] = useState(0);
+  const [minValue, setMinValue] = useState(0);
   const [rotateAttr, setRotateAttr] = useState({
     widthLength: width + margin + 100,
     heightLength: height + margin + 100,
@@ -47,21 +49,29 @@ const HorizontalBar = ({
     rectHeight: function () { return y.bandwidth()},
   })
 
-  // X-axis
-
-  const x = useMemo(() => {
+  const handleMaxValue = () => {
     const values = data.map(ele => ele.Value)
-    let xLinearDomainRange = [0, d3.max(values)];
+    return d3.max(values) > maxValue || maxValue === -1 ? d3.max(values) : maxValue;
+  }
+  const handleMinValue = () => {
+    const values = data.map(ele => ele.Value)
+    return minValue === -1 ? 0 : minValue;
+  }  
+
+  // X-axis
+  const x = useMemo(() => {
+
+    let xLinearDomainRange = [handleMinValue(), handleMaxValue()];
 
     if (rotateId === 3 || rotateId === 2) {
-      xLinearDomainRange = [d3.max(values), 0]
+      xLinearDomainRange = [handleMaxValue(), handleMinValue()];
     } else {
-      xLinearDomainRange = [0, d3.max(values)] // [0, 100]
+      xLinearDomainRange = [handleMinValue(), handleMaxValue()];
     }
     return d3.scaleLinear()
     .domain(xLinearDomainRange)
     .range([ 0, width])
-  }, [rotateId]);
+  }, [rotateId, maxValue, minValue]);
 
   
 
@@ -69,10 +79,27 @@ const HorizontalBar = ({
     setRotateId(name)
   }
 
+  const maxValueCB = (e) => {
+    setMaxValue(e.target.value);
+  }
+
+  const minValueCB = (e) => {
+    setMinValue(e.target.value);
+  }  
+
+  const toggleCB = (toggleState, id) => {
+    if (id === 'max' && toggleState) {
+      setMaxValue(-1);
+    }
+    if (id === 'min' && toggleState) {
+      setMinValue(-1);
+    }    
+  }
+
   useEffect(() => {
     // rotateCB();
     setRotateAttrHandler();
-  }, [rotateId])
+  }, [rotateId, maxValue, minValue])
 
   const setRotateAttrHandler = () => {
     const attr = {};
@@ -201,7 +228,15 @@ const HorizontalBar = ({
 
   return (
     <div className="horizontal-bar-wrapper">
-      <HorizontalBarPanel rotateId={rotateId} rotateButtonGroupCB={rotateButtonGroupCB} setDataCB={setDataCB} />
+      <HorizontalBarPanel 
+        rotateId={rotateId} rotateButtonGroupCB={rotateButtonGroupCB} 
+        setDataCB={setDataCB} 
+        toggleCB={toggleCB}
+        maxValue={maxValue}
+        maxValueCB={maxValueCB}
+        minValue={minValue}
+        minValueCB={minValueCB}        
+      />
       <div className="horizontal-bar-right">
         <svg ref={svgRef} />
       </div>

@@ -4,8 +4,6 @@ import './GroupButton.scss'
 const GroupButton = ({rotateId, buttons, rotateButtonGroupCB}) => {
 
     const handleClick = (event, id) => {
-        // setClickedId(id);
-        // console.log('>>> printButtonLabel', printButtonLabel);
         rotateButtonGroupCB(id);
       };    
 

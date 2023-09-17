@@ -30,7 +30,6 @@ const HorizontalBar = ({
 
     const printButtonLabel = (event) => {
       const {name} = event.target;
-      console.log('>>> name', name);
 
       if (name === 'right') {
 

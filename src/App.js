@@ -43,10 +43,8 @@ const AREA_CHART_DATA = [
 function App() {
 
   const [data, setDataCB] = useState(defaultData);
-
-  // TADA: WORKING NOW - drag and drop - make 
+  
   const setData = (file) => {
-    console.log('setData', file)
     setDataCB(
       [
         { Country: 'USA', Value: 80 },

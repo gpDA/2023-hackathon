@@ -2,4 +2,4 @@
 
 https://gpda.github.io/2023-hackathon/
 
-TEST CICD
+TEST CICD AFTER DELETING CREDENTIALS

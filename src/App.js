@@ -43,9 +43,7 @@ function App() {
 
   const [data, setDataCB] = useState(defaultData);
 
-  // TADA: WORKING NOW - drag and drop - make 
   const setData = (file) => {
-    console.log('setData', file)
     setDataCB(
       [
         { Country: 'USA', Value: 80 },
@@ -63,6 +61,7 @@ function App() {
           <Route path='bar' element={<HorizontalBar data={data} setDataCB={setData} />}/>
           <Route path='area-chart' element={<AreaChart data={AREA_CHART_DATA} />}/>
           <Route path='pie-graph' element={<PieGraph data={BAR_CHART_DATA} dataKey="label" value="value" />}/>
+          {/* route fallback - redirect to the following path for non catchable routh path */}
           <Route
               path="*"
               element={<Navigate to="/2023-hackathon/bar" replace />}

@@ -2,8 +2,7 @@ import './App.scss';
 import React, { useMemo, useEffect, useCallback, useRef, useState } from 'react'
 import HorizontalBar from "./components/HorizontalBar/HorizontalBar";
 import VerticalBar from "./components/VerticalBar/VerticalBar";
-import HorizontalStackedBar from "./components/HorizontalStackedBar/HorizontalStackedBar";
-import VerticalStackedBar from "./components/VeritcalStackedBar/VerticalStackedBar";
+import StackedBar from "./components/StackedBar/StackedBar";
 import AreaChart from "./components/AreaChart/AreaChart";
 import PieGraph from "./components/PieGraph/PieGraph";
 import Sidebar from "./components/Sidebar/Sidebar";

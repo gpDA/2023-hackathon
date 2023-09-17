@@ -184,7 +184,7 @@ const HorizontalBar = ({
         .attr("height", rotateAttr.heightLength)
         .append("g")
         .attr('class', 'test2')
-        .attr("transform", rotateAttr.svgTransform); // rotateAttr.svgTransform
+        .attr("transform", rotateAttr.svgTransform);
 
       return svg;
     },

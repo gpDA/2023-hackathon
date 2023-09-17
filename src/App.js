@@ -43,7 +43,7 @@ const AREA_CHART_DATA = [
 function App() {
 
   const [data, setDataCB] = useState(defaultData);
-  
+
   const setData = (file) => {
     setDataCB(
       [
@@ -62,6 +62,7 @@ function App() {
           <Route path='bar' element={<HorizontalBar data={data} setDataCB={setData} />}/>
           <Route path='area-chart' element={<AreaChart data={AREA_CHART_DATA} />}/>
           <Route path='pie-graph' element={<PieGraph data={BAR_CHART_DATA} dataKey="label" value="value" />}/>
+          {/* route fallback - redirect to the following path for non catchable routh path */}
           <Route
               path="*"
               element={<Navigate to="/2023-hackathon/bar" replace />}

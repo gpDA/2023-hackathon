@@ -4,22 +4,10 @@ import './Sidebar.scss';
 
 const sidebarNavItems = [
     {
-        display: 'Horizontal Bar',
+        display: 'Bar',
         icon: <i className='bx bx-home'></i>,
-        to: '/2023-hackathon/horizontal-bar',
+        to: '/2023-hackathon/bar',
         section: ''
-    },
-    {
-        display: 'Vertical Bar',
-        icon: <i className='bx bx-star'></i>,
-        to: '/2023-hackathon/vertical-bar',
-        section: 'started'
-    },
-    {
-        display: 'Stacked Bar',
-        icon: <i className='bx bx-user'></i>,
-        to: '/2023-hackathon/stacked-bar',
-        section: 'user'
     },
     {
         display: 'Area Chart',
@@ -32,7 +20,7 @@ const sidebarNavItems = [
         icon: <i className='bx bx-receipt'></i>,
         to: '/2023-hackathon/pie-graph',
         section: 'order'
-    },    
+    },
 ]
 
 const Sidebar = () => {

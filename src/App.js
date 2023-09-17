@@ -6,7 +6,7 @@ import StackedBar from "./components/StackedBar/StackedBar";
 import AreaChart from "./components/AreaChart/AreaChart";
 import PieGraph from "./components/PieGraph/PieGraph";
 import Sidebar from "./components/Sidebar/Sidebar";
-import { Routes, Route, Outlet, Link } from "react-router-dom";
+import { Routes, Route, Outlet, Link, Navigate } from "react-router-dom";
 
 const defaultData = [
   { Country: 'US', Value: 100 },
@@ -60,11 +60,13 @@ function App() {
     <div className="wrapper">
       <Routes>
         <Route path="/2023-hackathon" element={<Layout />}>
-          <Route path='horizontal-bar' element={<HorizontalBar data={data} setDataCB={setData} />}/>
-          <Route path='vertical-bar' element={<VerticalBar data={BAR_CHART_DATA} />}/>
-          <Route path='stacked-bar' element={<StackedBar data={STACKED_BAR_CHART_DATA}/>}/>
+          <Route path='bar' element={<HorizontalBar data={data} setDataCB={setData} />}/>
           <Route path='area-chart' element={<AreaChart data={AREA_CHART_DATA} />}/>
           <Route path='pie-graph' element={<PieGraph data={BAR_CHART_DATA} dataKey="label" value="value" />}/>
+          <Route
+              path="*"
+              element={<Navigate to="/2023-hackathon/bar" replace />}
+          />          
         </Route>
       </Routes>
     </div>
@@ -72,6 +74,7 @@ function App() {
 }
 
 function Layout() {
+
   return <div style={{
     padding: '50px 0px 0px 370px'
 }}>

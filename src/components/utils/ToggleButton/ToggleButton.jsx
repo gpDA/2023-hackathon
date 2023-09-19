@@ -27,7 +27,7 @@ const ToggleButton = ({ id, label, toggled, onClick, onChange, value }) => {
                     <span />
                 </div>
                 {
-                    !isToggled && 
+                    !isToggled && (id === 'max' || id === 'min')  && 
                     (
                         <div className="input-wrapper">
                             <input style={{width: '30px'}} readonly value={value === -1 ? 0 : value} />

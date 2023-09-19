@@ -2,11 +2,12 @@ import './HorizontalBarPanel.scss';
 import Cell from '../Cell/Cell';
 import ToggleButton from '../utils/ToggleButton/ToggleButton';
 import GroupButton from '../utils/GroupButton/GroupButton';
+import ColorPicker from '../utils/ColorPicker/ColorPicker';
 import { FileUploader } from "react-drag-drop-files"; // in case, drag & drop file is useful
 
 const HorizontalBarPanel = ({
     rotateId, rotateButtonGroupCB, 
-    colorId, colorButtonGroupCB,
+    recColor, handleColorPick,
     setDataCB, toggleCB, 
     maxValue, maxValueCB,
     minValue, minValueCB,
@@ -35,7 +36,6 @@ const HorizontalBarPanel = ({
                 />
             </Cell>
 
-
             <Cell title={'maxValue'}>
                 <ToggleButton 
                     id="max"
@@ -59,12 +59,37 @@ const HorizontalBarPanel = ({
             </Cell>
 
             <Cell title={'change color'}>
-                <GroupButton
-                        buttons={["color-1", "color-2", "color-3", "color-4"]}
-                        buttonGroupCB={colorButtonGroupCB}
-                        id={colorId}
-                    />
-            </Cell>            
+                <ColorPicker
+                    id='rec-color'
+                    handleChange={handleColorPick}
+                    color={recColor}
+                 />
+            </Cell>
+
+            <Cell title={'interactive'}>
+                <ToggleButton 
+                    id="interactive"
+                    label="is interactive"
+                    toggled={true}
+                    onClick={toggleCB}
+                />
+            </Cell>
+            <Cell title={'interactiveTextColor'}>
+                <ToggleButton 
+                    id="interactiveTextColor"
+                    label="is interactiveTextColor"
+                    toggled={true}
+                    onClick={toggleCB}
+                />
+            </Cell>
+            <Cell title={'interactiveLine'}>
+                <ToggleButton 
+                    id="interactiveLine"
+                    label="is interactiveLine"
+                    toggled={true}
+                    onClick={toggleCB}
+                />
+            </Cell>                        
         </div>
     )
 };

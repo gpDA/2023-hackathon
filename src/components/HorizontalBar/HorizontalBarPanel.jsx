@@ -4,7 +4,10 @@ import ToggleButton from '../utils/ToggleButton/ToggleButton';
 import GroupButton from '../utils/GroupButton/GroupButton';
 import { FileUploader } from "react-drag-drop-files"; // in case, drag & drop file is useful
 
-const HorizontalBarPanel = ({rotateId, rotateButtonGroupCB, setDataCB, toggleCB, 
+const HorizontalBarPanel = ({
+    rotateId, rotateButtonGroupCB, 
+    colorId, colorButtonGroupCB,
+    setDataCB, toggleCB, 
     maxValue, maxValueCB,
     minValue, minValueCB,
     }) => {
@@ -27,8 +30,8 @@ const HorizontalBarPanel = ({rotateId, rotateButtonGroupCB, setDataCB, toggleCB,
             <Cell title={'rotate'}>
                 <GroupButton
                     buttons={["right", "top", "left", "bottom"]}
-                    rotateButtonGroupCB={rotateButtonGroupCB}
-                    rotateId={rotateId}
+                    buttonGroupCB={rotateButtonGroupCB}
+                    id={rotateId}
                 />
             </Cell>
 
@@ -53,6 +56,14 @@ const HorizontalBarPanel = ({rotateId, rotateButtonGroupCB, setDataCB, toggleCB,
                     onChange={minValueCB}
                     value={minValue}
                 />
+            </Cell>
+
+            <Cell title={'change color'}>
+                <GroupButton
+                        buttons={["color-1", "color-2", "color-3", "color-4"]}
+                        buttonGroupCB={colorButtonGroupCB}
+                        id={colorId}
+                    />
             </Cell>            
         </div>
     )

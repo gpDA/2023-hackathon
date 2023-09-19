@@ -2,6 +2,7 @@ import React, { useMemo, useEffect, useCallback, useRef, useState } from 'react'
 import * as d3 from 'd3';
 import HorizontalBarPanel from "./HorizontalBarPanel";
 import './HorizontalBar.scss';
+import {createColorPalette} from '../utils/helper';
 
 
 
@@ -30,6 +31,7 @@ const HorizontalBar = ({
 
   // right: 0, top: 1, left: 2, bottom: 3
   const [rotateId, setRotateId] = useState(0);
+  const [colorId, setColorId] = useState(0);
   const [maxValue, setMaxValue] = useState(0);
   const [minValue, setMinValue] = useState(0);
   const [rotateAttr, setRotateAttr] = useState({
@@ -79,6 +81,10 @@ const HorizontalBar = ({
     setRotateId(name)
   }
 
+  const colorButtonGroupCB = (name) => {
+    setColorId(name)
+  }
+
   const maxValueCB = (e) => {
     setMaxValue(e.target.value);
   }
@@ -97,9 +103,8 @@ const HorizontalBar = ({
   }
 
   useEffect(() => {
-    // rotateCB();
     setRotateAttrHandler();
-  }, [rotateId, maxValue, minValue])
+  }, [rotateId, maxValue, minValue, colorId])
 
   const setRotateAttrHandler = () => {
     const attr = {};
@@ -217,7 +222,7 @@ const HorizontalBar = ({
       .attr("y", (d) => (rotateAttr.rectY(d)))
       .attr("width", (d) => (rotateAttr.rectWidth(d)))
       .attr("height", (d) => (rotateAttr.rectHeight(d)))
-      .attr("fill", "#69b3a2")
+      .attr("fill", createColorPalette(colorId)) // "#69b3a2"
   }
 
   useEffect(() => {
@@ -230,6 +235,7 @@ const HorizontalBar = ({
     <div className="horizontal-bar-wrapper">
       <HorizontalBarPanel 
         rotateId={rotateId} rotateButtonGroupCB={rotateButtonGroupCB} 
+        colorId={colorId} colorButtonGroupCB={colorButtonGroupCB} 
         setDataCB={setDataCB} 
         toggleCB={toggleCB}
         maxValue={maxValue}

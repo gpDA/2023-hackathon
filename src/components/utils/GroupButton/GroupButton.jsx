@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import './GroupButton.scss'
 
-const GroupButton = ({rotateId, buttons, rotateButtonGroupCB}) => {
+const GroupButton = ({id, buttons, buttonGroupCB}) => {
 
     const handleClick = (event, id) => {
-        rotateButtonGroupCB(id);
+        buttonGroupCB(id);
       };    
 
     return (
@@ -14,7 +14,7 @@ const GroupButton = ({rotateId, buttons, rotateButtonGroupCB}) => {
                 key={i}
                 name={buttonLabel}
                 onClick={(event) => handleClick(event, i)}
-                className={i === rotateId ? "customButton active" : "customButton"}
+                className={i === id ? "customButton active" : "customButton"}
                 >
                 {buttonLabel}
                 </button>

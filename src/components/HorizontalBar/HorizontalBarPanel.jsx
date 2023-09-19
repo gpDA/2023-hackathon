@@ -10,7 +10,6 @@ const HorizontalBarPanel = ({
     recColor, interactiveTextColor, handleColorPick,
     setDataCB, toggleCB, 
     maxValue, maxValueCB,
-    minValue, minValueCB,
     }) => {
 
     return (
@@ -44,17 +43,6 @@ const HorizontalBarPanel = ({
                     onClick={toggleCB}
                     onChange={maxValueCB}
                     value={maxValue}
-                />
-            </Cell>
-
-            <Cell title={'minValue'}>
-                <ToggleButton 
-                    id="min"
-                    label="auto"
-                    toggled={true}
-                    onClick={toggleCB}
-                    onChange={minValueCB}
-                    value={minValue}
                 />
             </Cell>
 

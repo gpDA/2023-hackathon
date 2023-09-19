@@ -32,6 +32,7 @@ const HorizontalBar = ({
   // right: 0, top: 1, left: 2, bottom: 3
   const [rotateId, setRotateId] = useState(0);
   const [recColor, setRecColor] = useState('#1C70C8');
+  const [interactiveTextColor, setInteractiveTextColor] = useState('#1C70C8');
   const [maxValue, setMaxValue] = useState(0);
   const [isInteractiveValue, setIsInteractiveValue] = useState(true);
   const [minValue, setMinValue] = useState(0);
@@ -87,6 +88,9 @@ const HorizontalBar = ({
     if (id === 'rec-color') {
       setRecColor(color.hex)
     }
+    if (id === 'interactive-text-color') {
+      setInteractiveTextColor(color.hex)
+    }    
     
   }
 
@@ -112,7 +116,7 @@ const HorizontalBar = ({
 
   useEffect(() => {
     setRotateAttrHandler();
-  }, [rotateId, maxValue, minValue, recColor])
+  }, [rotateId, maxValue, minValue, recColor, interactiveTextColor])
 
   const setRotateAttrHandler = () => {
     const attr = {};
@@ -272,7 +276,8 @@ const HorizontalBar = ({
         svg
           .append("text")
           .attr("class", "info")
-          .attr("fill", recColor)
+          .attr("fill", interactiveTextColor)
+          .attr("font-size", `18px`)
 
           .attr("y", () => {
             if (rotateId === 0) {
@@ -366,7 +371,7 @@ const HorizontalBar = ({
     <div className="horizontal-bar-wrapper">
       <HorizontalBarPanel 
         rotateId={rotateId} rotateButtonGroupCB={rotateButtonGroupCB} 
-        recColor={recColor} handleColorPick={handleColorPick} 
+        recColor={recColor} interactiveTextColor={interactiveTextColor} handleColorPick={handleColorPick} 
         setDataCB={setDataCB} 
         toggleCB={toggleCB}
         maxValue={maxValue}

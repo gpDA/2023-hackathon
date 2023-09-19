@@ -7,7 +7,7 @@ import { FileUploader } from "react-drag-drop-files"; // in case, drag & drop fi
 
 const HorizontalBarPanel = ({
     rotateId, rotateButtonGroupCB, 
-    recColor, handleColorPick,
+    recColor, interactiveTextColor, handleColorPick,
     setDataCB, toggleCB, 
     maxValue, maxValueCB,
     minValue, minValueCB,
@@ -75,20 +75,11 @@ const HorizontalBarPanel = ({
                 />
             </Cell>
             <Cell title={'interactiveTextColor'}>
-                <ToggleButton 
-                    id="interactiveTextColor"
-                    label="is interactiveTextColor"
-                    toggled={true}
-                    onClick={toggleCB}
-                />
-            </Cell>
-            <Cell title={'interactiveLine'}>
-                <ToggleButton 
-                    id="interactiveLine"
-                    label="is interactiveLine"
-                    toggled={true}
-                    onClick={toggleCB}
-                />
+                <ColorPicker
+                    id='interactive-text-color'
+                    handleChange={handleColorPick}
+                    color={interactiveTextColor}
+                 />
             </Cell>                        
         </div>
     )

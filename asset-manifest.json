@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/2023-hackathon/static/css/main.f2e63988.chunk.css",
-    "main.js": "/2023-hackathon/static/js/main.a9c9456f.chunk.js",
-    "main.js.map": "/2023-hackathon/static/js/main.a9c9456f.chunk.js.map",
+    "main.css": "/2023-hackathon/static/css/main.256e280e.chunk.css",
+    "main.js": "/2023-hackathon/static/js/main.bb862c9f.chunk.js",
+    "main.js.map": "/2023-hackathon/static/js/main.bb862c9f.chunk.js.map",
     "runtime-main.js": "/2023-hackathon/static/js/runtime-main.503ca596.js",
     "runtime-main.js.map": "/2023-hackathon/static/js/runtime-main.503ca596.js.map",
     "static/css/2.708ba609.chunk.css": "/2023-hackathon/static/css/2.708ba609.chunk.css",
@@ -12,7 +12,7 @@
     "static/js/3.3a118850.chunk.js.map": "/2023-hackathon/static/js/3.3a118850.chunk.js.map",
     "index.html": "/2023-hackathon/index.html",
     "static/css/2.708ba609.chunk.css.map": "/2023-hackathon/static/css/2.708ba609.chunk.css.map",
-    "static/css/main.f2e63988.chunk.css.map": "/2023-hackathon/static/css/main.f2e63988.chunk.css.map",
+    "static/css/main.256e280e.chunk.css.map": "/2023-hackathon/static/css/main.256e280e.chunk.css.map",
     "static/js/2.3386afcc.chunk.js.LICENSE.txt": "/2023-hackathon/static/js/2.3386afcc.chunk.js.LICENSE.txt",
     "static/media/index.css": "/2023-hackathon/static/media/roboto-vietnamese-400-normal.52cebac0.woff2"
   },
@@ -20,7 +20,7 @@
     "static/js/runtime-main.503ca596.js",
     "static/css/2.708ba609.chunk.css",
     "static/js/2.3386afcc.chunk.js",
-    "static/css/main.f2e63988.chunk.css",
-    "static/js/main.a9c9456f.chunk.js"
+    "static/css/main.256e280e.chunk.css",
+    "static/js/main.bb862c9f.chunk.js"
   ]
 }

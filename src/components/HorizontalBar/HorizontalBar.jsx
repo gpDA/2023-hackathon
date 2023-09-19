@@ -31,8 +31,9 @@ const HorizontalBar = ({
 
   // right: 0, top: 1, left: 2, bottom: 3
   const [rotateId, setRotateId] = useState(0);
-  const [colorId, setColorId] = useState(0);
+  const [recColor, setRecColor] = useState('#1C70C8');
   const [maxValue, setMaxValue] = useState(0);
+  const [isInteractiveValue, setIsInteractiveValue] = useState(true);
   const [minValue, setMinValue] = useState(0);
   const [rotateAttr, setRotateAttr] = useState({
     widthLength: width + margin + 100,
@@ -49,6 +50,7 @@ const HorizontalBar = ({
     rectY: function(d) { return y(d.Country); },
     rectWidth: function(d) { return x(d.Value); },
     rectHeight: function () { return y.bandwidth()},
+    test: function(d) { return y(d["Country"]) + y.bandwidth() / 2 + 10; },
   })
 
   const handleMaxValue = () => {
@@ -58,7 +60,7 @@ const HorizontalBar = ({
   const handleMinValue = () => {
     const values = data.map(ele => ele.Value)
     return minValue === -1 ? 0 : minValue;
-  }  
+  }
 
   // X-axis
   const x = useMemo(() => {
@@ -81,8 +83,11 @@ const HorizontalBar = ({
     setRotateId(name)
   }
 
-  const colorButtonGroupCB = (name) => {
-    setColorId(name)
+  const handleColorPick = (id, color) => {
+    if (id === 'rec-color') {
+      setRecColor(color.hex)
+    }
+    
   }
 
   const maxValueCB = (e) => {
@@ -99,12 +104,15 @@ const HorizontalBar = ({
     }
     if (id === 'min' && toggleState) {
       setMinValue(-1);
-    }    
+    }
+    if (id === 'interactive') {
+      setIsInteractiveValue(toggleState);
+    }
   }
 
   useEffect(() => {
     setRotateAttrHandler();
-  }, [rotateId, maxValue, minValue, colorId])
+  }, [rotateId, maxValue, minValue, recColor])
 
   const setRotateAttrHandler = () => {
     const attr = {};
@@ -196,6 +204,126 @@ const HorizontalBar = ({
     [height, width, rotateAttr]
   );
 
+  const mouseOverEvent = useCallback(
+    (svg) => {
+      svg.selectAll("rect")
+      .on("mouseover", (event, d) => {
+        svg
+          .append("line")
+          .attr("class", "valueLine")
+          .attr("y1", () => {
+            if (rotateId === 0) {
+              return 0;
+            }
+            if (rotateId === 1) {
+              return x(d['Value']);
+            }
+            if (rotateId === 2) {
+              return 0;
+            }
+            if (rotateId === 3) {
+              return x(d['Value']);
+            }           
+          })
+          .attr("x1", () => {
+            if (rotateId === 0) {
+              return x(d['Value']);
+            }
+            if (rotateId === 1) {
+              return 0;
+            }
+            if (rotateId === 2) {
+              return x(d['Value']);
+            }
+            if (rotateId === 3) {
+              return 0;
+            }
+          })
+          .attr("y2", () => {
+            if (rotateId === 0) {
+              return height;
+            }
+            if (rotateId === 1) {
+              return x(d['Value']);
+            }
+            if (rotateId === 2) {
+              return height;
+            }
+            if (rotateId === 3) {
+              return x(d['Value']);
+            }
+          })
+          .attr("x2", () => {
+            if (rotateId === 0) {
+              return x(d['Value']);
+            }
+            if (rotateId === 1) {
+              return height;
+            }
+            if (rotateId === 2) {
+              return x(d['Value']);
+            }
+            if (rotateId === 3) {
+              return height;
+            }
+          });
+
+
+        svg
+          .append("text")
+          .attr("class", "info")
+          .attr("fill", recColor)
+
+          .attr("y", () => {
+            if (rotateId === 0) {
+              return y(d["Country"]) + y.bandwidth() / 2 + 10;
+            }
+            if (rotateId === 1) {
+              return x(d['Value'] + 10);
+            }
+            if (rotateId === 2) {
+              return y(d["Country"]) + y.bandwidth() / 2 + 10;
+            }
+            if (rotateId === 3) {
+              return x(d['Value'] + 10);
+            }
+  
+          })
+          .attr("x", () => {
+            if (rotateId === 0) {
+              return x(d['Value'] + 10);
+            }
+            if (rotateId === 1) {
+              return y(d["Country"]) + y.bandwidth() / 2 + 10;
+            }
+            if (rotateId === 2) {
+              return x(d['Value'] + 10);
+            }
+            if (rotateId === 3) {
+              return y(d["Country"]) + y.bandwidth() / 2 + 10;
+            }              
+          })
+          .attr("text-anchor", "middle")
+          .text(() => {
+            const value = d['Value'];
+            return `${value}%`;
+          })
+
+      });      
+
+    },
+    [rotateAttr]
+  );
+
+  const mouseOutEvent = useCallback(
+    (svg) => {
+      svg.selectAll("rect")
+      .on("mouseout", (event, d) => {
+        svg.selectAll(".valueLine").remove();
+        svg.selectAll(".info").remove();
+      })
+    }, [rotateAttr]);  
+
   const createGraph = (div) => {
     const svg = drawSvg(div);
 
@@ -222,7 +350,10 @@ const HorizontalBar = ({
       .attr("y", (d) => (rotateAttr.rectY(d)))
       .attr("width", (d) => (rotateAttr.rectWidth(d)))
       .attr("height", (d) => (rotateAttr.rectHeight(d)))
-      .attr("fill", createColorPalette(colorId)) // "#69b3a2"
+      .attr("fill", recColor) // createColorPalette(colorId)
+
+      isInteractiveValue && mouseOverEvent(svg);
+      isInteractiveValue && mouseOutEvent(svg);
   }
 
   useEffect(() => {
@@ -235,7 +366,7 @@ const HorizontalBar = ({
     <div className="horizontal-bar-wrapper">
       <HorizontalBarPanel 
         rotateId={rotateId} rotateButtonGroupCB={rotateButtonGroupCB} 
-        colorId={colorId} colorButtonGroupCB={colorButtonGroupCB} 
+        recColor={recColor} handleColorPick={handleColorPick} 
         setDataCB={setDataCB} 
         toggleCB={toggleCB}
         maxValue={maxValue}

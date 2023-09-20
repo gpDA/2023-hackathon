@@ -2,6 +2,7 @@ import React, { useMemo, useEffect, useCallback, useRef, useState } from 'react'
 import * as d3 from 'd3';
 import HorizontalBarPanel from "./HorizontalBarPanel";
 import './HorizontalBar.scss';
+import {createColorPalette} from '../utils/helper';
 
 
 
@@ -30,6 +31,10 @@ const HorizontalBar = ({
 
   // right: 0, top: 1, left: 2, bottom: 3
   const [rotateId, setRotateId] = useState(0);
+  const [recColor, setRecColor] = useState('#1C70C8');
+  const [maxValue, setMaxValue] = useState(0);
+  const [isInteractiveValue, setIsInteractiveValue] = useState(true);
+  const [minValue, setMinValue] = useState(0);
   const [rotateAttr, setRotateAttr] = useState({
     widthLength: width + margin + 100,
     heightLength: height + margin + 100,
@@ -45,23 +50,32 @@ const HorizontalBar = ({
     rectY: function(d) { return y(d.Country); },
     rectWidth: function(d) { return x(d.Value); },
     rectHeight: function () { return y.bandwidth()},
+    test: function(d) { return y(d["Country"]) + y.bandwidth() / 2 + 10; },
   })
 
-  // X-axis
-
-  const x = useMemo(() => {
+  const handleMaxValue = () => {
     const values = data.map(ele => ele.Value)
-    let xLinearDomainRange = [0, d3.max(values)];
+    return d3.max(values) > maxValue || maxValue === -1 ? d3.max(values) : maxValue;
+  }
+  const handleMinValue = () => {
+    const values = data.map(ele => ele.Value)
+    return minValue === -1 ? 0 : minValue;
+  }
+
+  // X-axis
+  const x = useMemo(() => {
+
+    let xLinearDomainRange = [handleMinValue(), handleMaxValue()];
 
     if (rotateId === 3 || rotateId === 2) {
-      xLinearDomainRange = [d3.max(values), 0]
+      xLinearDomainRange = [handleMaxValue(), handleMinValue()];
     } else {
-      xLinearDomainRange = [0, d3.max(values)] // [0, 100]
+      xLinearDomainRange = [handleMinValue(), handleMaxValue()];
     }
     return d3.scaleLinear()
     .domain(xLinearDomainRange)
     .range([ 0, width])
-  }, [rotateId]);
+  }, [rotateId, maxValue, minValue]);
 
   
 
@@ -69,10 +83,36 @@ const HorizontalBar = ({
     setRotateId(name)
   }
 
+  const handleColorPick = (id, color) => {
+    if (id === 'rec-color') {
+      setRecColor(color.hex)
+    }
+    
+  }
+
+  const maxValueCB = (e) => {
+    setMaxValue(e.target.value);
+  }
+
+  const minValueCB = (e) => {
+    setMinValue(e.target.value);
+  }  
+
+  const toggleCB = (toggleState, id) => {
+    if (id === 'max' && toggleState) {
+      setMaxValue(-1);
+    }
+    if (id === 'min' && toggleState) {
+      setMinValue(-1);
+    }
+    if (id === 'interactive') {
+      setIsInteractiveValue(toggleState);
+    }
+  }
+
   useEffect(() => {
-    // rotateCB();
     setRotateAttrHandler();
-  }, [rotateId])
+  }, [rotateId, maxValue, minValue, recColor])
 
   const setRotateAttrHandler = () => {
     const attr = {};
@@ -95,7 +135,7 @@ const HorizontalBar = ({
     if (rotateId === 1) {
       attr.widthLength = height + margin + 100;
       attr.heightLength = width + margin + 100;
-      attr.svgTransform = `translate(${margin + 30},${margin / 2 + 60})`;
+      attr.svgTransform = `translate(${margin + 30},${margin / 2 + 20})`;
       attr.axisY = x;
       attr.axisX = y;
       attr.axisXFunctionName = 'axisTop',
@@ -127,14 +167,14 @@ const HorizontalBar = ({
     if (rotateId === 3) {
       attr.widthLength = height + margin + 100;
       attr.heightLength = width + margin + 100;
-      attr.svgTransform = `translate(${margin + 30},${margin / 2 + 60})`;
+      attr.svgTransform = `translate(${margin + 30},${margin / 2})`;
       attr.axisY = x;
       attr.axisX = y;
       attr.axisXFunctionName = 'axisBottom',
-      attr.axisYFunctionName = 'axisRight',
+      attr.axisYFunctionName = 'axisLeft',
       attr.axisYTransform = `translate(0, ${height+100})`;
       attr.axisXTransform = "translate(+10,0)rotate(0)";
-      attr.axisXLeftRotateTransform = `translate(${width-100}, 0)`;
+      attr.axisXLeftRotateTransform = `translate(0, 0)`;
       attr.rectX = function(d) { return y(d.Country); }; // d.Country
       attr.rectY = function (d) { return x(d.Value) }; // height + 100 - x(d.Value)
       attr.rectWidth = function () { return y.bandwidth()};
@@ -150,6 +190,7 @@ const HorizontalBar = ({
   const drawSvg = useCallback(
     (div) => {
       d3.selectAll(".test2").remove();
+      
       const svg = d3
         .select(div)
         .attr("width", rotateAttr.widthLength)
@@ -160,8 +201,128 @@ const HorizontalBar = ({
 
       return svg;
     },
-    [height, width, margin, rotateId]
+    [height, width, rotateAttr]
   );
+
+  const mouseOverEvent = useCallback(
+    (svg) => {
+      svg.selectAll("rect")
+      .on("mouseover", (event, d) => {
+        svg
+          .append("line")
+          .attr("class", "valueLine")
+          .attr("y1", () => {
+            if (rotateId === 0) {
+              return 0;
+            }
+            if (rotateId === 1) {
+              return x(d['Value']);
+            }
+            if (rotateId === 2) {
+              return 0;
+            }
+            if (rotateId === 3) {
+              return x(d['Value']);
+            }           
+          })
+          .attr("x1", () => {
+            if (rotateId === 0) {
+              return x(d['Value']);
+            }
+            if (rotateId === 1) {
+              return 0;
+            }
+            if (rotateId === 2) {
+              return x(d['Value']);
+            }
+            if (rotateId === 3) {
+              return 0;
+            }
+          })
+          .attr("y2", () => {
+            if (rotateId === 0) {
+              return height;
+            }
+            if (rotateId === 1) {
+              return x(d['Value']);
+            }
+            if (rotateId === 2) {
+              return height;
+            }
+            if (rotateId === 3) {
+              return x(d['Value']);
+            }
+          })
+          .attr("x2", () => {
+            if (rotateId === 0) {
+              return x(d['Value']);
+            }
+            if (rotateId === 1) {
+              return height;
+            }
+            if (rotateId === 2) {
+              return x(d['Value']);
+            }
+            if (rotateId === 3) {
+              return height;
+            }
+          });
+
+
+        svg
+          .append("text")
+          .attr("class", "info")
+          .attr("fill", recColor)
+
+          .attr("y", () => {
+            if (rotateId === 0) {
+              return y(d["Country"]) + y.bandwidth() / 2 + 10;
+            }
+            if (rotateId === 1) {
+              return x(d['Value'] + 10);
+            }
+            if (rotateId === 2) {
+              return y(d["Country"]) + y.bandwidth() / 2 + 10;
+            }
+            if (rotateId === 3) {
+              return x(d['Value'] + 10);
+            }
+  
+          })
+          .attr("x", () => {
+            if (rotateId === 0) {
+              return x(d['Value'] + 10);
+            }
+            if (rotateId === 1) {
+              return y(d["Country"]) + y.bandwidth() / 2 + 10;
+            }
+            if (rotateId === 2) {
+              return x(d['Value'] + 10);
+            }
+            if (rotateId === 3) {
+              return y(d["Country"]) + y.bandwidth() / 2 + 10;
+            }              
+          })
+          .attr("text-anchor", "middle")
+          .text(() => {
+            const value = d['Value'];
+            return `${value}%`;
+          })
+
+      });      
+
+    },
+    [rotateAttr]
+  );
+
+  const mouseOutEvent = useCallback(
+    (svg) => {
+      svg.selectAll("rect")
+      .on("mouseout", (event, d) => {
+        svg.selectAll(".valueLine").remove();
+        svg.selectAll(".info").remove();
+      })
+    }, [rotateAttr]);  
 
   const createGraph = (div) => {
     const svg = drawSvg(div);
@@ -189,7 +350,10 @@ const HorizontalBar = ({
       .attr("y", (d) => (rotateAttr.rectY(d)))
       .attr("width", (d) => (rotateAttr.rectWidth(d)))
       .attr("height", (d) => (rotateAttr.rectHeight(d)))
-      .attr("fill", "#69b3a2")
+      .attr("fill", recColor) // createColorPalette(colorId)
+
+      isInteractiveValue && mouseOverEvent(svg);
+      isInteractiveValue && mouseOutEvent(svg);
   }
 
   useEffect(() => {
@@ -200,7 +364,16 @@ const HorizontalBar = ({
 
   return (
     <div className="horizontal-bar-wrapper">
-      <HorizontalBarPanel rotateId={rotateId} rotateButtonGroupCB={rotateButtonGroupCB} setDataCB={setDataCB} />
+      <HorizontalBarPanel 
+        rotateId={rotateId} rotateButtonGroupCB={rotateButtonGroupCB} 
+        recColor={recColor} handleColorPick={handleColorPick} 
+        setDataCB={setDataCB} 
+        toggleCB={toggleCB}
+        maxValue={maxValue}
+        maxValueCB={maxValueCB}
+        minValue={minValue}
+        minValueCB={minValueCB}        
+      />
       <div className="horizontal-bar-right">
         <svg ref={svgRef} />
       </div>

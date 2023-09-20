@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './StackedBarPanel.scss'
 import Switch from 'react-switch';
+import ColorPicker from '../utils/ColorPicker/ColorPicker';
 
 
 const StackedBarPanel = ({ handleClick, handleLabel, labels, hover: { checked, setChecked } }) => {
@@ -31,6 +32,11 @@ const StackedBarPanel = ({ handleClick, handleLabel, labels, hover: { checked, s
           </div>
           <div className="panel-item">
             <h2>{"Color"}</h2>
+            <ColorPicker
+              id='rec-color'
+              handleChange={() => console.log('update')}
+              color={'#1C70C8'}
+            />
           </div>
           <div className="panel-item">
             <h2>{"Max Value"}</h2>

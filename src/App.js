@@ -59,6 +59,7 @@ function App() {
       <Routes>
         <Route path="/2023-hackathon" element={<Layout />}>
           <Route path='bar' element={<HorizontalBar data={data} setDataCB={setData} />}/>
+          <Route path='stacked-bar' element={<StackedBar data={STACKED_BAR_CHART_DATA} />}/>
           <Route path='area-chart' element={<AreaChart data={AREA_CHART_DATA} />}/>
           <Route path='pie-graph' element={<PieGraph data={BAR_CHART_DATA} dataKey="label" value="value" />}/>
           {/* route fallback - redirect to the following path for non catchable routh path */}

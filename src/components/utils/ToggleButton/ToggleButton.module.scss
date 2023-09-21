@@ -1,9 +1,8 @@
-label {
+.toggleButton {
     position: relative;
     display: inline-block;
     width: 60px;
     height: 30px;
-}
 
 span {
     position: absolute;
@@ -48,4 +47,5 @@ span:before {
     height: 30px;
     opacity: 1;
   }
+}
 }

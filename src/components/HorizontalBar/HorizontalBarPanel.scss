@@ -1,4 +1,9 @@
 .horizontal-bar-left {
-    // background-color: red;
-    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: auto;
+
+    & > div {
+        flex: 50%;
+    }
 }

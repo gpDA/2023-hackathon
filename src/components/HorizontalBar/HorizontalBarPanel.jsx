@@ -27,7 +27,7 @@ const HorizontalBarPanel = ({
                 </button>
             </Cell>
 
-            <Cell title={'rotate'}>
+            <Cell title={'ROTATE'}>
                 <GroupButton
                     buttons={["right", "top", "left", "bottom"]}
                     buttonGroupCB={rotateButtonGroupCB}
@@ -35,7 +35,7 @@ const HorizontalBarPanel = ({
                 />
             </Cell>
 
-            <Cell title={'maxValue'}>
+            <Cell title={'MAX VALUE'}>
                 <ToggleButton 
                     id="max"
                     label="auto"
@@ -46,15 +46,16 @@ const HorizontalBarPanel = ({
                 />
             </Cell>
 
-            <Cell title={'change color'}>
+            <Cell title={'BAR COLOR'}>
                 <ColorPicker
                     id='rec-color'
                     handleChange={handleColorPick}
                     color={recColor}
                  />
             </Cell>
+            
 
-            <Cell title={'interactive'}>
+            <Cell title={'IS INTERACTIVE'}>
                 <ToggleButton 
                     id="interactive"
                     label="is interactive"
@@ -62,7 +63,7 @@ const HorizontalBarPanel = ({
                     onClick={toggleCB}
                 />
             </Cell>
-            <Cell title={'interactiveTextColor'}>
+            <Cell title={'HOVER TEXT COLOR'}>
                 <ColorPicker
                     id='interactive-text-color'
                     handleChange={handleColorPick}

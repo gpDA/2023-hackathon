@@ -11,7 +11,7 @@
 # production
 /build
 .eslintcache
-node_modules/.cache/.eslintcach
+/node_modules/.cache/.eslintcache
 /.lh/*
 
 # misc

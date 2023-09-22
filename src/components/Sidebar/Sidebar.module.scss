@@ -1,0 +1,45 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 320px;
+    background-color: #fff;
+    box-shadow: 5px 0 5px -2px #d5d5d5;
+
+    &__logo {
+        height: 120px;
+        padding: 40px;
+        span {
+            font-size: 1.5rem;
+        }
+    }
+
+    &__menu {
+        position: relative;
+
+        &__item {
+            display: flex;
+            align-items: center;
+            place-content: flex-start;
+            padding: 1rem 3rem;
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #555555;
+            transition: color 0.3s ease-in-out;
+            margin: 0 10px;
+            border-radius: 20px;            
+
+            &.active, &:hover {
+                background-color: #f9f9f9;
+            }
+
+            &__icon {
+                margin-right: 1rem;
+                svg {
+                    font-size: 23px;
+                }
+            }
+        }
+    }
+}

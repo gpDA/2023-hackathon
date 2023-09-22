@@ -1,11 +1,11 @@
-import './HorizontalBarPanel.scss';
+import './BarPanel.scss';
 import Cell from '../Cell/Cell';
 import ToggleButton from '../utils/ToggleButton/ToggleButton';
 import GroupButton from '../utils/GroupButton/GroupButton';
 import ColorPicker from '../utils/ColorPicker/ColorPicker';
 import { FileUploader } from "react-drag-drop-files"; // in case, drag & drop file is useful
 
-const HorizontalBarPanel = ({
+const BarPanel = ({
     rotateId, rotateButtonGroupCB, 
     recColor, interactiveTextColor, handleColorPick,
     setDataCB, toggleCB, 
@@ -74,4 +74,4 @@ const HorizontalBarPanel = ({
     )
 };
 
-export default HorizontalBarPanel;
+export default BarPanel;

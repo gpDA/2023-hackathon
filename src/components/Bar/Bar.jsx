@@ -1,7 +1,7 @@
 import React, { useMemo, useEffect, useCallback, useRef, useState } from 'react'
 import * as d3 from 'd3';
-import HorizontalBarPanel from "./HorizontalBarPanel";
-import styles from './HorizontalBar.module.scss';
+import BarPanel from "./BarPanel";
+import styles from './Bar.module.scss';
 import {createColorPalette} from '../utils/helper';
 
 
@@ -357,7 +357,7 @@ const HorizontalBar = ({
 
   return (
     <div className={styles["horizontal-bar-wrapper"]}>
-      <HorizontalBarPanel 
+      <BarPanel 
         rotateId={rotateId} rotateButtonGroupCB={rotateButtonGroupCB} 
         recColor={recColor} interactiveTextColor={interactiveTextColor} handleColorPick={handleColorPick} 
         setDataCB={setDataCB} 

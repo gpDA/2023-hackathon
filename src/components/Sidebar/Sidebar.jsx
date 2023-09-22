@@ -20,6 +20,10 @@ const sidebarNavItems = [
         to: '/2023-hackathon/stacked-bar',
         section: 'stacked-bar'
     },    
+        icon: <i className='bx bx-home'></i>,
+        to: '/2023-hackathon/stacked-bar',
+        section: ''
+    },
     {
         display: 'Area Chart',
         icon: <LuAreaChart />,

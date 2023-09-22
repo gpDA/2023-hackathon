@@ -23,10 +23,10 @@ const BAR_CHART_DATA = [
 ];
 
 const STACKED_BAR_CHART_DATA = [
-  { label: "Apples", value: 100, diff: 100, max: 200 },
-  { label: "Bananas", value: 200, diff: 0, max: 200 },
-  { label: "Oranges", value: 50, diff: 150, max: 200  },
-  { label: "Kiwis", value: 150, diff: 50, max: 200  }
+  { label: "Apples", value: 200, diff: 100, value1: 50, diff1: 50  },
+  { label: "Bananas", value: 200, diff: 0 },
+  { label: "Oranges", value: 50, diff: 150  },
+  { label: "Kiwis", value: 150, diff: 50  },
 ];
 
 const AREA_CHART_DATA = [
@@ -59,6 +59,7 @@ function App() {
       <Routes>
         <Route path="/2023-hackathon" element={<Layout />}>
           <Route path='bar' element={<HorizontalBar data={data} setDataCB={setData} />}/>
+          <Route path='stacked-bar' element={<StackedBar data={STACKED_BAR_CHART_DATA} />}/>
           <Route path='area-chart' element={<AreaChart data={AREA_CHART_DATA} />}/>
           <Route path='pie-graph' element={<PieGraph data={BAR_CHART_DATA} dataKey="label" value="value" />}/>
           {/* route fallback - redirect to the following path for non catchable routh path */}

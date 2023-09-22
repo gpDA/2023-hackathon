@@ -1,9 +1,0 @@
-.horizontal-bar-left {
-    display: flex;
-    flex-wrap: wrap;
-    overflow: auto;
-
-    & > div {
-        flex: 50%;
-    }
-}

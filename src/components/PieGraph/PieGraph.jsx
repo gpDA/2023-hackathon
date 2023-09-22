@@ -3,7 +3,7 @@ import { createColorPalette } from "../../utils/color";
 import { createDomain, parseTooltipText } from "../../utils/help";
 import * as d3 from "d3";
 import PieGraphPanel from "./PieGraphPanel";
-import './PieGraph.scss';
+import styles from './PieGraph.module.scss';
 
 const PieGraph = ({
   data,
@@ -214,11 +214,11 @@ const PieGraph = ({
   }, [svgRef, createPieGraph]);
 
   return (
-    <div style={{ margin: "2em" }} className="pie-graph-wrapper">
-      <PieGraphPanel />
-      <div className="pie-graph-right">
+    <div className="graph-wrapper">
+      <div className="svg-container">
         <svg ref={svgRef} width={width} height={height} />
       </div>
+      <PieGraphPanel />
     </div>
   );
 };

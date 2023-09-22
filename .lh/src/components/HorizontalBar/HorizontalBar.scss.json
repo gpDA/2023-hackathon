@@ -3,11 +3,15 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
                     "date": 1693253479174,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1695149808735,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,5 +4,11 @@\n }\r\n .horizontal-bar-right {\r\n     // background-color: blue;\r\n     flex: 1;\r\n-}\n\\ No newline at end of file\n+}\r\n+\r\n+line.valueLine {\r\n+    stroke: #fed966;\r\n+    stroke-width: 3;\r\n+    stroke-dasharray: 3 6;\r\n+  }\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1693253479174,

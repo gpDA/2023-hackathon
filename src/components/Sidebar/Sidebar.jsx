@@ -1,76 +1,63 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import './Sidebar.scss';
+import styles from './Sidebar.module.scss';
+import { BiBarChartAlt2 } from 'react-icons/bi';
+import { MdStackedBarChart } from 'react-icons/md';
+import { LuAreaChart } from 'react-icons/lu';
+import { AiOutlinePieChart } from 'react-icons/ai';
+import { GiElephant } from 'react-icons/gi';
 
 const sidebarNavItems = [
     {
         display: 'Bar',
-        icon: <i className='bx bx-home'></i>,
+        icon: <BiBarChartAlt2 />,
         to: '/2023-hackathon/bar',
-        section: ''
+        section: 'bar'
     },
     {
         display: 'Stacked Bar',
-        icon: <i className='bx bx-home'></i>,
+        icon: <MdStackedBarChart />,
         to: '/2023-hackathon/stacked-bar',
-        section: ''
+        section: 'stacked-bar'
     },
     {
         display: 'Area Chart',
-        icon: <i className='bx bx-receipt'></i>,
+        icon: <LuAreaChart />,
         to: '/2023-hackathon/area-chart',
-        section: 'order'
+        section: 'area-chart'
     },
     {
         display: 'Pie Graph',
-        icon: <i className='bx bx-receipt'></i>,
+        icon: <AiOutlinePieChart />,
         to: '/2023-hackathon/pie-graph',
-        section: 'order'
+        section: 'pie-graph'
     },
 ]
 
 const Sidebar = () => {
     const [activeIndex, setActiveIndex] = useState(0);
-    const [stepHeight, setStepHeight] = useState(0);
-    const sidebarRef = useRef();
-    const indicatorRef = useRef();
     const location = useLocation();
-
-    useEffect(() => {
-        setTimeout(() => {
-            const sidebarItem = sidebarRef.current.querySelector('.sidebar__menu__item');
-            indicatorRef.current.style.height = `${sidebarItem.clientHeight}px`;
-            setStepHeight(sidebarItem.clientHeight);
-        }, 50);
-    }, []);
 
     // change active index
     useEffect(() => {
-        const curPath = window.location.pathname.split('/')[1];
+        const curPath = window.location.pathname.split('/')[2];
         const activeItem = sidebarNavItems.findIndex(item => item.section === curPath);
-        setActiveIndex(curPath.length === 0 ? 0 : activeItem);
+        setActiveIndex(curPath?.length === 0 ? 0 : activeItem);
     }, [location]);
 
-    return <div className='sidebar'>
-        <div className="sidebar__logo">
-            Animate
+    return <div className={styles.sidebar}>
+        <div className={styles['sidebar__logo']}>
+            <span>Dumbo</span> <GiElephant /> <span>in Dumbo</span>
         </div>
-        <div ref={sidebarRef} className="sidebar__menu">
-            <div
-                ref={indicatorRef}
-                className="sidebar__menu__indicator"
-                style={{
-                    transform: `translateX(-50%) translateY(${activeIndex * stepHeight}px)`
-                }}
-            ></div>
+        <div className={styles['sidebar__menu']}>
             {
                 sidebarNavItems.map((item, index) => (
                     <Link to={item.to} key={index}>
-                        <div className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}>
-                            <div className="sidebar__menu__item__icon">
+                        <div className={activeIndex === index ? `${styles['sidebar__menu__item']} ${styles['active']}`: styles['sidebar__menu__item']}>
+                            <div className={styles["sidebar__menu__item__icon"]}>
                                 {item.icon}
                             </div>
-                            <div className="sidebar__menu__item__text">
+                            <div className={styles["sidebar__menu__item__text"]}>
                                 {item.display}
                             </div>
                         </div>

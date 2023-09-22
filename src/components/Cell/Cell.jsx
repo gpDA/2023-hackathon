@@ -3,7 +3,7 @@ import './Cell.scss'
 const Cell = ({title, children,}) => {
     return (
         <div className="cell">
-            <div>
+            <div className="title">
                 {title}
             </div>
             {children}

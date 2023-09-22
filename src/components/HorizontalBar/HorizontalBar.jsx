@@ -1,7 +1,7 @@
 import React, { useMemo, useEffect, useCallback, useRef, useState } from 'react'
 import * as d3 from 'd3';
 import HorizontalBarPanel from "./HorizontalBarPanel";
-import './HorizontalBar.scss';
+import styles from './HorizontalBar.module.scss';
 import {createColorPalette} from '../utils/helper';
 
 
@@ -356,7 +356,7 @@ const HorizontalBar = ({
   }, [svgRef, createGraph, data]);
 
   return (
-    <div className="horizontal-bar-wrapper">
+    <div className={styles["horizontal-bar-wrapper"]}>
       <HorizontalBarPanel 
         rotateId={rotateId} rotateButtonGroupCB={rotateButtonGroupCB} 
         recColor={recColor} interactiveTextColor={interactiveTextColor} handleColorPick={handleColorPick} 
@@ -365,7 +365,7 @@ const HorizontalBar = ({
         maxValue={maxValue}
         maxValueCB={maxValueCB}        
       />
-      <div className="horizontal-bar-right">
+      <div className={styles["horizontal-bar-right"]}>
         <svg ref={svgRef} />
       </div>
     </div>

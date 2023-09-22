@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 import './StackedBarPanel.scss'
 import Switch from 'react-switch';
-import ColorPicker from '../utils/ColorPicker/ColorPicker';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 
-const StackedBarPanel = ({ handleClick, handleLabel, labels, hover: { checked, setChecked } }) => {
+const StackedBarPanel = ({ colorType, setColorType, range: { minMaxVal, rangeVal, setRangeVal }, handleClick, handleLabel, labels, hover: { checked, setChecked, checked2, setChecked2 } }) => {
   const btns = ['right', 'left', 'top', 'bottom'];
 
   const handleSwitch = (nextChecked) => {
     setChecked(nextChecked);
+  }
+
+  const handleSwitch2 = (nextChecked) => {
+    setChecked2(nextChecked);
   }
 
   const handleRotate = (e) => {
@@ -22,6 +27,11 @@ const StackedBarPanel = ({ handleClick, handleLabel, labels, hover: { checked, s
     handleLabel(type, value);
   };
 
+  const handleRange = (e) => {
+    const value = e.target.value;
+    setRangeVal(value);
+  }
+
     return (
         <div className="horizontal-stacked-bar-left">
           <div className="panel-item">
@@ -32,17 +42,35 @@ const StackedBarPanel = ({ handleClick, handleLabel, labels, hover: { checked, s
           </div>
           <div className="panel-item">
             <h2>{"Color"}</h2>
-            <ColorPicker
-              id='rec-color'
-              handleChange={() => console.log('update')}
-              color={'#1C70C8'}
+            <Dropdown
+              options={[
+                { value: 'Color-1', label: 'Color-1'},
+                { value: 'Color-2', label: 'Color-2'},
+                { value: 'Color-3', label: 'Color-3'},
+                { value: 'Color-4', label: 'Color-4'},
+                { value: 'Color-5', label: 'Color-5'},
+                { value: 'Color-6', label: 'Color-6'},
+              ]}
+              onChange={setColorType}
+              value={colorType}
             />
           </div>
           <div className="panel-item">
             <h2>{"Max Value"}</h2>
-          </div>
-          <div className="panel-item">
-            <h2>{"Min Value"}</h2>
+            <Switch 
+              onChange={handleSwitch2}
+              checked={checked2}
+            />
+            { !checked2 &&
+              <input 
+                type="range" 
+                name="maxValue" 
+                min={Math.ceil(minMaxVal)}
+                max={Math.ceil(minMaxVal) + 300}
+                onChange={handleRange}
+                value={rangeVal} 
+              />
+            }
           </div>
           <div className="panel-item">
             <h2>{"Hover"}</h2>

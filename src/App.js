@@ -23,10 +23,10 @@ const BAR_CHART_DATA = [
 ];
 
 const STACKED_BAR_CHART_DATA = [
-  { label: "Apples", value: 100, diff: 100, max: 200 },
-  { label: "Bananas", value: 200, diff: 0, max: 200 },
-  { label: "Oranges", value: 50, diff: 150, max: 200  },
-  { label: "Kiwis", value: 150, diff: 50, max: 200  }
+  { label: "Apples", value: 200, diff: 100, value1: 50, diff1: 50  },
+  { label: "Bananas", value: 200, diff: 0 },
+  { label: "Oranges", value: 50, diff: 150  },
+  { label: "Kiwis", value: 150, diff: 50  },
 ];
 
 const AREA_CHART_DATA = [

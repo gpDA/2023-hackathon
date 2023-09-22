@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useRef } from 'react';
+import React, { useEffect, useState, useCallback, useRef, useMemo } from 'react';
 import { createColorPalette } from "../../utils/color";
 import * as d3 from 'd3';
 import StackedBarPanel from "./StackedBarPanel";
@@ -12,10 +12,13 @@ const StackedBar = ({
   height = 400,
   margin = 80,
   groupKey = "label",
-  subgroups = ["value", "diff"],
   colorPalette = [],
-  colorType = "Color-6"
 }) => {
+  const subgroups = Object.keys(data[0]).slice(1);
+  const minMaxVal = useMemo(() => {
+    return data.map((obj) => Object.keys(obj).reduce((acc, key) => subgroups?.includes(key) ? acc + parseInt(obj[key]) : acc + 0, 0))
+  }, [subgroups]);
+
   const svgRef = useRef(null);
   const [graphAngle, setGraphAngle] = useState('left');
   const [labels, setLabels] = useState({
@@ -23,6 +26,9 @@ const StackedBar = ({
     yLabel: "Fruit Type"
   })
   const [checked, setChecked] = useState(false);
+  const [checked2, setChecked2] = useState(false);
+  const [rangeVal, setRangeVal] = useState(Math.max(...minMaxVal));
+  const [colorType, setColorType] = useState({ value: 'Color-1', label: 'Color-1'});
 
   /* PANEL FUNCTIONS */
   const handleClick = (angle) => {
@@ -48,10 +54,10 @@ const StackedBar = ({
         .append("g")
         .attr('class', 'svg-content')
         .attr("transform", function() {
-          if (graphAngle === 'right') {
+          if (graphAngle === 'right' || graphAngle === 'bottom') {
             return `translate(${margin - 30}, ${margin / 2})`;
           } else if (graphAngle === 'top') {
-            return `translate(${margin + 10}, ${margin})`;
+            return `translate(${margin - 30}, ${margin})`;
           }
           return `translate(${margin + 30},${margin / 2})`;
         });
@@ -62,27 +68,20 @@ const StackedBar = ({
 
   const handleAxis = useCallback(
     (groups) => {
-      const datanum = data.map((obj) =>
-        Object.keys(obj).reduce(
-          (acc, key) =>
-            subgroups.includes(key) ? acc + parseInt(obj[key]) : acc + 0,
-          0
-        )
-      );
-      const domainMax = Math.max(...datanum);
+      const domainMax = checked2 ? Math.max(...minMaxVal) : rangeVal;
 
-      let y = d3.scaleBand().domain(groups).range([0, height]).padding([0.2]);
-      let x = d3
+      let x = d3.scaleBand().domain(groups).range([0, width]).padding([0.2]);
+      let y = d3
         .scaleLinear()
         .domain([0, Math.ceil(domainMax)])
-        .range([width, 0]);
+        .range([height, 0]);
 
       if (graphAngle === 'bottom' || graphAngle === 'top') {
         return [y, x]
       }
       return [x, y];
     },
-    [width, height, subgroups, graphAngle]
+    [width, height, graphAngle, rangeVal, minMaxVal]
   );
 
   const handleScale = useCallback(() => {
@@ -90,12 +89,12 @@ const StackedBar = ({
     const paletteRange =
       colorPalette.length > 0
         ? colorPalette
-        : createColorPalette(colorType, len);
+        : createColorPalette(colorType.value ?? "");
     const color = d3.scaleOrdinal().domain(subgroups).range(paletteRange);
     return color;
   }, [subgroups, colorPalette, colorType]);
 
-  const handleXAxis = useCallback((svgContent, x) => {
+  const handleXAxis = useCallback((svgContent, x, y) => {
       // x axis
       if (graphAngle === 'bottom') {
         svgContent
@@ -115,9 +114,12 @@ const StackedBar = ({
       }
   }, [height, graphAngle]);
 
-  const handleYAxis = useCallback((svgContent, y) => {
+  const handleYAxis = useCallback((svgContent, x, y) => {
     if (graphAngle === 'bottom' || graphAngle === 'top') {
-      svgContent.append("g").call(d3.axisLeft(y));
+      svgContent
+        .append("g")
+        .attr("transform", `translate(${width}, 0)`)
+        .call(d3.axisRight(y).tickSizeOuter(0));
     } else if (graphAngle === 'right') {
       svgContent
       .append("g")
@@ -140,9 +142,9 @@ const StackedBar = ({
 
       const [x, y] = handleAxis(groups);
       // x axis
-      handleXAxis(svg, x);
+      handleXAxis(svg, x, y);
       // y axis
-      handleYAxis(svg, y);
+      handleYAxis(svg, x, y);
 
       // adding bars
       svg
@@ -155,38 +157,28 @@ const StackedBar = ({
         .data((d) => d)
         .join("rect")
         .attr("y", (d) => {
-          if (graphAngle === 'bottom') {
-            return  y(d[1]);
-          } else if (graphAngle === 'top') {
-            return  y(d[1]) === 0 ? height - y(d[0]) : 0;
-          } else {
-            return  y(d.data[groupKey]);
+          if (graphAngle === 'top' || graphAngle === 'bottom') {
+            return y(d.data[groupKey]);
           }
+          return y(d[1]);
         })
         .attr("x", (d) => {
-          if (graphAngle === 'bottom' || graphAngle === 'top') {
-            return x(d.data[groupKey]);
-          } else if (graphAngle === 'right') {
-            return  width - x(d[0]);
-          } else {
+          if (graphAngle === 'top' || graphAngle === 'bottom') {
             return x(d[1]);
           }
+          return x(d.data[groupKey]);
         })
         .attr("width", (d) => {
-          if (graphAngle === 'bottom' || graphAngle === 'top') {
-            return x.bandwidth();
-          } else {
+          if (graphAngle === 'top' || graphAngle === 'bottom') {
             return x(d[0]) - x(d[1]);
           }
+          return x.bandwidth();
         })
         .attr("height", (d) => {
-          if (graphAngle === 'bottom') {
-            return y(d[0]) - y(d[1]);
-          } else if (graphAngle === 'top') {
-            return y(d[0]) - y(d[1]);
-          } else {
+          if (graphAngle === 'top' || graphAngle === 'bottom') {
             return y.bandwidth();
           }
+          return y(d[0]) - y(d[1]);
         })
         .on('mouseover', function(event, d) {
           // hover
@@ -198,20 +190,16 @@ const StackedBar = ({
             svg.append('text')
               .attr('class', 'hover-text')
               .attr('x',  function() {
-                if (graphAngle === 'right') {
-                  return width-x(d[1]) - 30;
-                } else if (graphAngle === 'bottom' || graphAngle === 'top') {
-                  return x(d.data[groupKey]) + 25;
+                if (graphAngle === 'top' || graphAngle === 'bottom') {
+                  return x(d[1]);
                 }
-                return x(d[0]) - 30;
+                return x(d.data[groupKey]);
               })
               .attr('y', function() {
-                if (graphAngle === 'bottom') {
-                  return y(d[1]) + 20;
-                } else if (graphAngle === 'top') {
-                  return y(d[1]) === 0 ? height - y(d[0]) + 20 : 0 + 20;
+                if (graphAngle === 'top' || graphAngle === 'bottom') {
+                  return y(d.data[groupKey]);
                 }
-                return y(d.data[groupKey]) + 45;
+                return y(d[1]);
               })
               .text(d[1] - d[0])
           }
@@ -229,9 +217,9 @@ const StackedBar = ({
         svg
           .append("text")
           .attr("class", "label")
-          .attr("x", -height / 2)
+          .attr("x", -height / 2 )
           .attr("y", function() {
-            if (graphAngle === 'right') {
+            if (graphAngle === 'right' || graphAngle === 'bottom' || graphAngle === 'top') {
               return width + margin;
             }
             return -margin / 1.3;
@@ -240,9 +228,9 @@ const StackedBar = ({
           .attr("text-anchor", "middle")
           .text(function() {
             if (graphAngle === 'bottom' || graphAngle === 'top') {
-              return labels.xLabel;
+              return labels.yLabel;
             }
-            return labels.yLabel;
+            return labels.xLabel;
           });
 
       label.show &&
@@ -259,9 +247,9 @@ const StackedBar = ({
           .attr("text-anchor", "middle")
           .text(function() {
             if (graphAngle === 'bottom' || graphAngle === 'top') {
-              return labels.yLabel;
+              return labels.xLabel;
             }
-            return labels.xLabel;
+            return labels.yLabel;
           });
     },
     [
@@ -292,7 +280,10 @@ const StackedBar = ({
         handleClick={handleClick} 
         handleLabel={handleLabel} 
         labels={labels}
-        hover={{ checked, setChecked }}
+        hover={{ checked, setChecked, checked2, setChecked2 }}
+        range={{ minMaxVal: Math.max(...minMaxVal), rangeVal, setRangeVal }}
+        setColorType={setColorType}
+        colorType={colorType}
         />
       <div className="horizontal-stacked-bar-right">
         <svg ref={svgRef} />

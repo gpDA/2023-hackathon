@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback, useRef, useMemo } from 'react'
 import { createColorPalette } from "../../utils/color";
 import * as d3 from 'd3';
 import StackedBarPanel from "./StackedBarPanel";
-import './StackedBar.scss';
+import styles from './StackedBar.module.scss';
 
 
 const StackedBar = ({
@@ -275,7 +275,10 @@ const StackedBar = ({
   }, [svgRef, createPieGraph]);
 
   return (
-    <div className="horizontal-stacked-bar-wrapper">
+    <div className="graph-wrapper">
+      <div className="svg-container">
+        <svg ref={svgRef} />
+      </div>
       <StackedBarPanel 
         handleClick={handleClick} 
         handleLabel={handleLabel} 
@@ -284,10 +287,7 @@ const StackedBar = ({
         range={{ minMaxVal: Math.max(...minMaxVal), rangeVal, setRangeVal }}
         setColorType={setColorType}
         colorType={colorType}
-        />
-      <div className="horizontal-stacked-bar-right">
-        <svg ref={svgRef} />
-      </div>
+      />
     </div>
   );
 }

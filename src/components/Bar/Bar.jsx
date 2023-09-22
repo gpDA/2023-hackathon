@@ -6,7 +6,7 @@ import {createColorPalette} from '../utils/helper';
 
 
 
-const HorizontalBar = ({
+const Bar = ({
   data = [],
   setDataCB,
   width=400,
@@ -329,15 +329,12 @@ const HorizontalBar = ({
           .style("text-anchor", "end");
     svg.append("g")
         .call(d3[rotateAttr.axisYFunctionName](rotateAttr.axisY).tickSizeOuter(0))
-        // ${width}
         .attr("transform", rotateAttr.axisXLeftRotateTransform);
 
     const rec = svg.selectAll("rect").data(data);
 
     rec
       .join("rect")
-      // .enter()
-      // .append("rect")
       .attr("class", "test")
       .attr("x", (d) => (rotateAttr.rectX(d)))
       .attr("y", (d) => (rotateAttr.rectY(d)))
@@ -356,7 +353,10 @@ const HorizontalBar = ({
   }, [svgRef, createGraph, data]);
 
   return (
-    <div className={styles["horizontal-bar-wrapper"]}>
+    <div className={"graph-wrapper"}>
+      <div className={`svg-container ${styles.bar_graph}`}>
+        <svg ref={svgRef} />
+      </div>
       <BarPanel 
         rotateId={rotateId} rotateButtonGroupCB={rotateButtonGroupCB} 
         recColor={recColor} interactiveTextColor={interactiveTextColor} handleColorPick={handleColorPick} 
@@ -365,11 +365,8 @@ const HorizontalBar = ({
         maxValue={maxValue}
         maxValueCB={maxValueCB}        
       />
-      <div className={styles["horizontal-bar-right"]}>
-        <svg ref={svgRef} />
-      </div>
     </div>
   )
 }
 
-export default HorizontalBar;
+export default Bar;

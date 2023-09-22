@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import './StackedBarPanel.scss'
 import Switch from 'react-switch';
+import Cell from '../Cell/Cell';
+import GroupButton from '../utils/GroupButton/GroupButton';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
 
 const StackedBarPanel = ({ colorType, setColorType, range: { minMaxVal, rangeVal, setRangeVal }, handleClick, handleLabel, labels, hover: { checked, setChecked, checked2, setChecked2 } }) => {
-  const btns = ['right', 'left', 'top', 'bottom'];
+  const [rotateId, setRotateId] = useState(2);
 
   const handleSwitch = (nextChecked) => {
     setChecked(nextChecked);
@@ -16,9 +17,10 @@ const StackedBarPanel = ({ colorType, setColorType, range: { minMaxVal, rangeVal
     setChecked2(nextChecked);
   }
 
-  const handleRotate = (e) => {
-    const angle = e.target.getAttribute('data-rotate');
+  const handleRotate = (index) => {
+    const angle = ["right", "top", "left", "bottom"][index];
     handleClick(angle);
+    setRotateId(index)
   }
 
   const onChangeLabel = (e) => {
@@ -33,15 +35,15 @@ const StackedBarPanel = ({ colorType, setColorType, range: { minMaxVal, rangeVal
   }
 
     return (
-        <div className="horizontal-stacked-bar-left">
-          <div className="panel-item">
-            <h2>{"Rotate Graph"}</h2>
-            {btns.map(btn => (
-              <button data-rotate={btn} key={btn} onClick={handleRotate}>{btn}</button>
-            ))}
-          </div>
-          <div className="panel-item">
-            <h2>{"Color"}</h2>
+        <div className="graph-pannel-container">
+          <Cell title={"Rotate Graph"}>
+            <GroupButton
+              buttons={["right", "top", "left", "bottom"]}
+              buttonGroupCB={handleRotate}
+              id={rotateId}
+            />
+          </Cell>
+          <Cell title={"Color"}>
             <Dropdown
               options={[
                 { value: 'Color-1', label: 'Color-1'},
@@ -54,9 +56,8 @@ const StackedBarPanel = ({ colorType, setColorType, range: { minMaxVal, rangeVal
               onChange={setColorType}
               value={colorType}
             />
-          </div>
-          <div className="panel-item">
-            <h2>{"Max Value"}</h2>
+          </Cell>
+          <Cell title={"Max Value"}>
             <Switch 
               onChange={handleSwitch2}
               checked={checked2}
@@ -71,16 +72,14 @@ const StackedBarPanel = ({ colorType, setColorType, range: { minMaxVal, rangeVal
                 value={rangeVal} 
               />
             }
-          </div>
-          <div className="panel-item">
-            <h2>{"Hover"}</h2>
+          </Cell>
+          <Cell title={"INTERACTIVE"}>
             <Switch 
               onChange={handleSwitch}
               checked={checked}
             />
-          </div>
-          <div className="panel-item">
-            <h2>{"Labels"}</h2>
+          </Cell>
+          <Cell title={"Labels"}>
             <div>
               <label>{"xLabel"}</label>
               <input 
@@ -99,11 +98,10 @@ const StackedBarPanel = ({ colorType, setColorType, range: { minMaxVal, rangeVal
                 value={labels?.yLabel} 
               />
             </div>
-          </div>
-          <div className="panel-item">
-            <h2>{"Data"}</h2>
+          </Cell>
+          <Cell title={"DATA"}>
             // TODO: dropdown? for csv
-          </div>
+          </Cell>
         </div>
     )
 };

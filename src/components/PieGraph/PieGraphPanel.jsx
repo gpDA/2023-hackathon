@@ -1,8 +1,6 @@
-import './PieGraphPanel.scss'
-
 const PieGraphPanel = () => {
     return (
-        <div className="pie-graph-left">
+        <div className="graph-pannel-container">
             hello PieGraphPanel
         </div>
     )

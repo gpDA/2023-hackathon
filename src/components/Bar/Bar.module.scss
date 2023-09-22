@@ -1,18 +1,7 @@
-.horizontal-bar-wrapper {
-    display: flex;
-    flex-direction: column-reverse;
-    height: 100vh;
-}
-.horizontal-bar-right {
-    flex: 1;
-    padding-left: 100px;
-    padding-top: 50px;
-    background-color: #e2e2e2;
-    min-height: 520px;
-}
-
-line.valueLine {
+.bar_graph {
+  line {
     stroke: #fed966;
     stroke-width: 3;
     stroke-dasharray: 3 6;
   }
+}

@@ -2,6 +2,7 @@ import React, { useMemo, useEffect, useCallback, useRef, useState } from 'react'
 import * as d3 from 'd3';
 import BarPanel from "./BarPanel";
 import styles from './Bar.module.scss';
+import {createColorPalette} from '../utils/helper';
 
 
 
@@ -324,15 +325,12 @@ const Bar = ({
           .style("text-anchor", "end");
     svg.append("g")
         .call(d3[rotateAttr.axisYFunctionName](rotateAttr.axisY).tickSizeOuter(0))
-        // ${width}
         .attr("transform", rotateAttr.axisXLeftRotateTransform);
 
     const rec = svg.selectAll("rect").data(data);
 
     rec
       .join("rect")
-      // .enter()
-      // .append("rect")
       .attr("class", "test")
       .attr("x", (d) => (rotateAttr.rectX(d)))
       .attr("y", (d) => (rotateAttr.rectY(d)))
@@ -351,21 +349,21 @@ const Bar = ({
   }, [svgRef, createGraph, data]);
 
   return (
-    <div className={styles["bar-wrapper"]}>
+    <div className={"graph-wrapper"}>
+      <div className={`svg-container ${styles.bar_graph}`}>
+        <svg ref={svgRef} />
+      </div>
       {
         shouldDisplay &&
           <BarPanel 
-          rotateId={rotateId} rotateButtonGroupCB={rotateButtonGroupCB} 
-          recColor={recColor} interactiveTextColor={interactiveTextColor} handleColorPick={handleColorPick} 
-          setDataCB={setDataCB} 
-          toggleCB={toggleCB}
-          maxValue={maxValue}
-          maxValueCB={maxValueCB}        
-        />        
+            rotateId={rotateId} rotateButtonGroupCB={rotateButtonGroupCB} 
+            recColor={recColor} interactiveTextColor={interactiveTextColor} handleColorPick={handleColorPick} 
+            setDataCB={setDataCB} 
+            toggleCB={toggleCB}
+            maxValue={maxValue}
+            maxValueCB={maxValueCB}        
+          />
       }
-      <div className={styles["bar-right"]}>
-        <svg ref={svgRef} />
-      </div>
     </div>
   )
 }

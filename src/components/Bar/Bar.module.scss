@@ -11,8 +11,10 @@
     min-height: 520px;
 }
 
-line.valueLine {
-    stroke: #fed966;
-    stroke-width: 3;
-    stroke-dasharray: 3 6;
+.bar_graph {
+    line {
+      stroke: #fed966;
+      stroke-width: 3;
+      stroke-dasharray: 3 6;
+    }
   }

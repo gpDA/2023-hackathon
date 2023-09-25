@@ -1,8 +1,6 @@
-import './AreaChartPanel.scss'
-
 const AreaChartPanel = () => {
     return (
-        <div className="area-chart-left">
+        <div className="graph-pannel-container">
             hello AreaChartPanel
         </div>
     )

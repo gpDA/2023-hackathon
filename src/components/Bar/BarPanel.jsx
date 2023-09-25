@@ -1,4 +1,3 @@
-import './BarPanel.scss';
 import Cell from '../Cell/Cell';
 import ToggleButton from '../utils/ToggleButton/ToggleButton';
 import GroupButton from '../utils/GroupButton/GroupButton';
@@ -12,7 +11,12 @@ const BarPanel = ({
     }) => {
 
     return (
-        <div className="bar-left">
+        <div className="graph-pannel-container">
+            {/* in case, drag & drop file is useful */}
+            {/* <Cell title={'cell-title'}>
+                <FileUploader handleChange={setDataCB} name="files" types={["JPG", "PNG", "GIF"]} />
+            </Cell>             */}
+
             <Cell title={'cell-title'}>
                 <button
                     onClick={() => setDataCB('test')}

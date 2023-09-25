@@ -1,11 +1,11 @@
 import './App.scss';
 import React, { useMemo, useEffect, useCallback, useRef, useState } from 'react'
-import HorizontalBar from "./components/HorizontalBar/HorizontalBar";
-import VerticalBar from "./components/VerticalBar/VerticalBar";
+import Bar from "./components/Bar/Bar";
 import StackedBar from "./components/StackedBar/StackedBar";
 import AreaChart from "./components/AreaChart/AreaChart";
 import PieGraph from "./components/PieGraph/PieGraph";
 import Sidebar from "./components/Sidebar/Sidebar";
+import GraphGallery from "./components/GraphGallery/GraphGallery";
 import { Routes, Route, Outlet, Link, Navigate } from "react-router-dom";
 
 const defaultData = [
@@ -58,7 +58,8 @@ function App() {
     <div className="wrapper">
       <Routes>
         <Route path="/2023-hackathon" element={<Layout />}>
-          <Route path='bar' element={<HorizontalBar data={data} setDataCB={setData} />}/>
+          <Route index element={<GraphGallery />} />
+          <Route path='bar' element={<Bar data={data} setDataCB={setData} />}/>
           <Route path='stacked-bar' element={<StackedBar data={STACKED_BAR_CHART_DATA} />}/>
           <Route path='area-chart' element={<AreaChart data={AREA_CHART_DATA} />}/>
           <Route path='pie-graph' element={<PieGraph data={BAR_CHART_DATA} dataKey="label" value="value" />}/>

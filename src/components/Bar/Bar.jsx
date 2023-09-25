@@ -1,17 +1,17 @@
 import React, { useMemo, useEffect, useCallback, useRef, useState } from 'react'
 import * as d3 from 'd3';
-import HorizontalBarPanel from "./HorizontalBarPanel";
-import styles from './HorizontalBar.module.scss';
-import {createColorPalette} from '../utils/helper';
+import BarPanel from "./BarPanel";
+import styles from './Bar.module.scss';
 
 
 
-const HorizontalBar = ({
+const Bar = ({
   data = [],
   setDataCB,
   width=400,
   height=300,
   margin=20,
+  shouldDisplay= true
 }) => {
   const svgRef = useRef(null);
 
@@ -23,11 +23,6 @@ const HorizontalBar = ({
       .domain(data.map(function(d) { return d.Country; }))
       .padding(.1);
   }, [data]);     
-
-  // idea for the customization
-  // TODO: set the max for each ticks
-  // TODO: change the margin for x- & y- axis
-  // TODO: color change
 
   // right: 0, top: 1, left: 2, bottom: 3
   const [rotateId, setRotateId] = useState(0);
@@ -181,14 +176,14 @@ const HorizontalBar = ({
 
   const drawSvg = useCallback(
     (div) => {
-      d3.selectAll(".test2").remove();
+      d3.selectAll(".svg-wrapper").remove();
       
       const svg = d3
         .select(div)
         .attr("width", rotateAttr.widthLength)
         .attr("height", rotateAttr.heightLength)
         .append("g")
-        .attr('class', 'test2')
+        .attr('class', 'svg-wrapper')
         .attr("transform", rotateAttr.svgTransform);
 
       return svg;
@@ -343,7 +338,7 @@ const HorizontalBar = ({
       .attr("y", (d) => (rotateAttr.rectY(d)))
       .attr("width", (d) => (rotateAttr.rectWidth(d)))
       .attr("height", (d) => (rotateAttr.rectHeight(d)))
-      .attr("fill", recColor) // createColorPalette(colorId)
+      .attr("fill", recColor)
 
       isInteractiveValue && mouseOverEvent(svg);
       isInteractiveValue && mouseOutEvent(svg);
@@ -356,20 +351,23 @@ const HorizontalBar = ({
   }, [svgRef, createGraph, data]);
 
   return (
-    <div className={styles["horizontal-bar-wrapper"]}>
-      <HorizontalBarPanel 
-        rotateId={rotateId} rotateButtonGroupCB={rotateButtonGroupCB} 
-        recColor={recColor} interactiveTextColor={interactiveTextColor} handleColorPick={handleColorPick} 
-        setDataCB={setDataCB} 
-        toggleCB={toggleCB}
-        maxValue={maxValue}
-        maxValueCB={maxValueCB}        
-      />
-      <div className={styles["horizontal-bar-right"]}>
+    <div className={styles["bar-wrapper"]}>
+      {
+        shouldDisplay &&
+          <BarPanel 
+          rotateId={rotateId} rotateButtonGroupCB={rotateButtonGroupCB} 
+          recColor={recColor} interactiveTextColor={interactiveTextColor} handleColorPick={handleColorPick} 
+          setDataCB={setDataCB} 
+          toggleCB={toggleCB}
+          maxValue={maxValue}
+          maxValueCB={maxValueCB}        
+        />        
+      }
+      <div className={styles["bar-right"]}>
         <svg ref={svgRef} />
       </div>
     </div>
   )
 }
 
-export default HorizontalBar;
+export default Bar;

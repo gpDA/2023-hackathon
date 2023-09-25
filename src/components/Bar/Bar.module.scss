@@ -1,9 +1,9 @@
-.horizontal-bar-wrapper {
+.bar-wrapper {
     display: flex;
     flex-direction: column-reverse;
     height: 100vh;
 }
-.horizontal-bar-right {
+.bar-right {
     flex: 1;
     padding-left: 100px;
     padding-top: 50px;

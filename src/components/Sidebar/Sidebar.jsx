@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styles from './Sidebar.module.scss';
 import { BiBarChartAlt2 } from 'react-icons/bi';
 import { MdStackedBarChart } from 'react-icons/md';
@@ -37,6 +37,9 @@ const sidebarNavItems = [
 const Sidebar = () => {
     const [activeIndex, setActiveIndex] = useState(0);
     const location = useLocation();
+    const navigate = useNavigate ();
+
+    console.log('>> location', location);
 
     // change active index
     useEffect(() => {
@@ -46,7 +49,7 @@ const Sidebar = () => {
     }, [location]);
 
     return <div className={styles.sidebar}>
-        <div className={styles['sidebar__logo']}>
+        <div onClick={() => {return location?.pathname === '/2023-hackathon' ? null : navigate('/2023-hackathon')}} className={styles['sidebar__logo']}>
             <span>Dumbo</span> <GiElephant /> <span>in Dumbo</span>
         </div>
         <div className={styles['sidebar__menu']}>

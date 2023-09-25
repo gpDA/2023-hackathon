@@ -1,26 +1,15 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './GraphGallery.module.scss';
 import { FileUploader } from "react-drag-drop-files";
 import * as d3 from "d3";
+import { useNavigate } from "react-router-dom";
 import Bar from "../Bar/Bar";
-
-const defaultData = [
-    { Country: 'US', Value: 100 },
-    { Country: 'S. Korea', Value: 85 },
-    { Country: 'Italy', Value: 72 },
-    { Country: 'Japan', Value: 80 },
-]
+import { useSelector, useDispatch } from 'react-redux'
+import { updateGraph } from '../../Slice/graphSlice'
 
 const graphGallery = () => {
-    // const [data, setDataCB] = useState(originalData);
-    const [barData, setBarData] = useState(defaultData);
-
-    //  TODO: rename component name
-    //  TODO: give the appropriate flag
-
-    const test = () => {
-        console.log('>Test')
-    }
+    const navigate = useNavigate();
+    const dispatch = useDispatch()    
 
     const handleFileUpload = async (file) => {
 
@@ -29,19 +18,22 @@ const graphGallery = () => {
 
             const data = event.target.result;
             const parsedData = JSON.parse(data);
-            setBarData(parsedData);
-            // TODO: React setState
+            dispatch(updateGraph({key: 'bar', value: parsedData}))
         });
         reader.readAsText(file);
+    }
+
+    const redirectToGraphPanel = (graphType) => {
+        if (graphType === 'bar') {
+            navigate("/2023-hackathon/bar");
+        }
     }
 
     return (
         <div className={styles['graphGallery']}>
             <div className={styles['graph-wrapper']}>
-                <div className={styles['graph']}>
-                    <Bar 
-                        data={barData} 
-                        setDataCB={test} 
+                <div onClick={() => redirectToGraphPanel('bar')} className={styles['graph']}>
+                    <Bar
                         shouldDisplay={false}
                         width={200}
                         height={150}

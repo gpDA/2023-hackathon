@@ -3,17 +3,17 @@ import * as d3 from 'd3';
 import BarPanel from "./BarPanel";
 import styles from './Bar.module.scss';
 import {createColorPalette} from '../utils/helper';
+import { useSelector, useDispatch } from 'react-redux'
 
 
 
 const Bar = ({
-  data = [],
-  setDataCB,
   width=400,
   height=300,
   margin=20,
   shouldDisplay= true
 }) => {
+  const {bar: {data, key: barKey, value: barValue}} = useSelector((state) => state.graph)
   const svgRef = useRef(null);
 
   // Y-axis
@@ -21,7 +21,7 @@ const Bar = ({
     return d3
       .scaleBand()
       .range([ 0, height ])
-      .domain(data.map(function(d) { return d.Country; }))
+      .domain(data.map(function(d) { return d[barKey]; }))
       .padding(.1);
   }, [data]);     
 
@@ -43,14 +43,14 @@ const Bar = ({
     axisXTransform: "translate(10,10)rotate(45)",
     axisXLeftRotateTransform: null,
     rectX: function () { return x(0)},
-    rectY: function(d) { return y(d.Country); },
-    rectWidth: function(d) { return x(d.Value); },
+    rectY: function(d) { return y(d[barKey]); },
+    rectWidth: function(d) { return x(d[barValue]); },
     rectHeight: function () { return y.bandwidth()},
-    test: function(d) { return y(d["Country"]) + y.bandwidth() / 2 + 10; },
+    test: function(d) { return y(d[barKey]) + y.bandwidth() / 2 + 10; },
   })
 
   const handleMaxValue = () => {
-    const values = data.map(ele => ele.Value)
+    const values = data.map(ele => ele[barValue])
     return d3.max(values) > maxValue || maxValue === -1 ? d3.max(values) : maxValue;
   }
 
@@ -67,7 +67,7 @@ const Bar = ({
     return d3.scaleLinear()
     .domain(xLinearDomainRange)
     .range([ 0, width])
-  }, [rotateId, maxValue]);
+  }, [data, rotateId, maxValue]);
 
   
 
@@ -100,7 +100,7 @@ const Bar = ({
 
   useEffect(() => {
     setRotateAttrHandler();
-  }, [rotateId, maxValue, recColor, interactiveTextColor])
+  }, [data, rotateId, maxValue, recColor, interactiveTextColor])
 
   const setRotateAttrHandler = () => {
     const attr = {};
@@ -116,8 +116,8 @@ const Bar = ({
       attr.axisXTransform = "translate(10,10)rotate(45)";
       attr.axisXLeftRotateTransform = null;
       attr.rectX = function () { return x(0)};
-      attr.rectY = function(d) { return y(d.Country); };
-      attr.rectWidth = function(d) { return x(d.Value); };
+      attr.rectY = function(d) { return y(d[barKey]); };
+      attr.rectWidth = function(d) { return x(d[barValue]); };
       attr.rectHeight = function () { return y.bandwidth()};
     }
     if (rotateId === 1) {
@@ -131,10 +131,10 @@ const Bar = ({
       attr.axisYTransform = "translate(0, 0)";
       attr.axisXTransform = "translate(+10,-10)rotate(0)";
       attr.axisXLeftRotateTransform = null;
-      attr.rectX = function(d) { return y(d.Country); };
+      attr.rectX = function(d) { return y(d[barKey]); };
       attr.rectY = function () { return x(0)};
       attr.rectWidth = function () { return y.bandwidth()};
-      attr.rectHeight = function(d) { return x(d.Value); };
+      attr.rectHeight = function(d) { return x(d[barValue]); };
     }
     if (rotateId === 2) {
       attr.widthLength = width + margin + 100;
@@ -147,9 +147,9 @@ const Bar = ({
       attr.axisYTransform = "translate(0," + height + ")";
       attr.axisXTransform = "translate(10,10)rotate(45)";
       attr.axisXLeftRotateTransform = `translate(${width}, 0)`;
-      attr.rectX = function (d) { return x(d.Value)};
-      attr.rectY = function(d) { return y(d.Country); };
-      attr.rectWidth = function(d) { return width - x(d.Value); };
+      attr.rectX = function (d) { return x(d[barValue])};
+      attr.rectY = function(d) { return y(d[barKey]); };
+      attr.rectWidth = function(d) { return width - x(d[barValue]); };
       attr.rectHeight = function () { return y.bandwidth()};
     }
     if (rotateId === 3) {
@@ -163,10 +163,10 @@ const Bar = ({
       attr.axisYTransform = `translate(0, ${height+100})`;
       attr.axisXTransform = "translate(+10,0)rotate(0)";
       attr.axisXLeftRotateTransform = `translate(0, 0)`;
-      attr.rectX = function(d) { return y(d.Country); }; // d.Country
-      attr.rectY = function (d) { return x(d.Value) }; // height + 100 - x(d.Value)
+      attr.rectX = function(d) { return y(d[barKey]); };
+      attr.rectY = function (d) { return x(d[barValue]) };
       attr.rectWidth = function () { return y.bandwidth()};
-      attr.rectHeight = function(d) { return height + 100 - x(d.Value) };
+      attr.rectHeight = function(d) { return height + 100 - x(d[barValue]) };
     }    
 
     setRotateAttr((previous) => ({
@@ -198,30 +198,30 @@ const Bar = ({
       .on("mouseover", (event, d) => {
         svg
           .append("line")
-          .attr("class", "valueLine")
+          .attr("class", styles["valueLine"])
           .attr("y1", () => {
             if (rotateId === 0) {
               return 0;
             }
             if (rotateId === 1) {
-              return x(d['Value']);
+              return x(d[barValue]);
             }
             if (rotateId === 2) {
               return 0;
             }
             if (rotateId === 3) {
-              return x(d['Value']);
+              return x(d[barValue]);
             }           
           })
           .attr("x1", () => {
             if (rotateId === 0) {
-              return x(d['Value']);
+              return x(d[barValue]);
             }
             if (rotateId === 1) {
               return 0;
             }
             if (rotateId === 2) {
-              return x(d['Value']);
+              return x(d[barValue]);
             }
             if (rotateId === 3) {
               return 0;
@@ -232,24 +232,24 @@ const Bar = ({
               return height;
             }
             if (rotateId === 1) {
-              return x(d['Value']);
+              return x(d[barValue]);
             }
             if (rotateId === 2) {
               return height;
             }
             if (rotateId === 3) {
-              return x(d['Value']);
+              return x(d[barValue]);
             }
           })
           .attr("x2", () => {
             if (rotateId === 0) {
-              return x(d['Value']);
+              return x(d[barValue]);
             }
             if (rotateId === 1) {
               return height;
             }
             if (rotateId === 2) {
-              return x(d['Value']);
+              return x(d[barValue]);
             }
             if (rotateId === 3) {
               return height;
@@ -265,36 +265,36 @@ const Bar = ({
 
           .attr("y", () => {
             if (rotateId === 0) {
-              return y(d["Country"]) + y.bandwidth() / 2 + 10;
+              return y(d[barKey]) + y.bandwidth() / 2 + 10;
             }
             if (rotateId === 1) {
-              return x(d['Value'] + 10);
+              return x(d[barValue] + 10);
             }
             if (rotateId === 2) {
-              return y(d["Country"]) + y.bandwidth() / 2 + 10;
+              return y(d[barKey]) + y.bandwidth() / 2 + 10;
             }
             if (rotateId === 3) {
-              return x(d['Value'] + 10);
+              return x(d[barValue] + 10);
             }
   
           })
           .attr("x", () => {
             if (rotateId === 0) {
-              return x(d['Value'] + 10);
+              return x(d[barValue] + 10);
             }
             if (rotateId === 1) {
-              return y(d["Country"]) + y.bandwidth() / 2 + 10;
+              return y(d[barKey]) + y.bandwidth() / 2 + 10;
             }
             if (rotateId === 2) {
-              return x(d['Value'] + 10);
+              return x(d[barValue] + 10);
             }
             if (rotateId === 3) {
-              return y(d["Country"]) + y.bandwidth() / 2 + 10;
+              return y(d[barKey]) + y.bandwidth() / 2 + 10;
             }              
           })
           .attr("text-anchor", "middle")
           .text(() => {
-            const value = d['Value'];
+            const value = d[barValue];
             return `${value}%`;
           })
 
@@ -308,7 +308,7 @@ const Bar = ({
     (svg) => {
       svg.selectAll("rect")
       .on("mouseout", (event, d) => {
-        svg.selectAll(".valueLine").remove();
+        svg.selectAll(`.${styles["valueLine"]}`).remove();
         svg.selectAll(".info").remove();
       })
     }, [rotateAttr]);  
@@ -331,7 +331,7 @@ const Bar = ({
 
     rec
       .join("rect")
-      .attr("class", "test")
+      .attr("class", "rect")
       .attr("x", (d) => (rotateAttr.rectX(d)))
       .attr("y", (d) => (rotateAttr.rectY(d)))
       .attr("width", (d) => (rotateAttr.rectWidth(d)))
@@ -343,6 +343,7 @@ const Bar = ({
   }
 
   useEffect(() => {
+    console.log('>>> useEffect', data);
     if (svgRef.current || data) {
       createGraph(svgRef.current);
     }
@@ -350,7 +351,7 @@ const Bar = ({
 
   return (
     <div className={"graph-wrapper"}>
-      <div className={`svg-container ${styles.bar_graph}`}>
+      <div className={`svg-container ${shouldDisplay ? styles.bar_graph_with_panel : styles.bar_graph}`}>
         <svg ref={svgRef} />
       </div>
       {
@@ -358,7 +359,6 @@ const Bar = ({
           <BarPanel 
             rotateId={rotateId} rotateButtonGroupCB={rotateButtonGroupCB} 
             recColor={recColor} interactiveTextColor={interactiveTextColor} handleColorPick={handleColorPick} 
-            setDataCB={setDataCB} 
             toggleCB={toggleCB}
             maxValue={maxValue}
             maxValueCB={maxValueCB}        

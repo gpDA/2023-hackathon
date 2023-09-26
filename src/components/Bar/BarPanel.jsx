@@ -2,29 +2,17 @@ import Cell from '../Cell/Cell';
 import ToggleButton from '../utils/ToggleButton/ToggleButton';
 import GroupButton from '../utils/GroupButton/GroupButton';
 import ColorPicker from '../utils/ColorPicker/ColorPicker';
-import { FileUploader } from "react-drag-drop-files"; // in case, drag & drop file is useful
+import styles from './Bar.module.scss';
 
 const BarPanel = ({
     rotateId, rotateButtonGroupCB, 
     recColor, interactiveTextColor, handleColorPick,
-    setDataCB, toggleCB, 
+    toggleCB, 
     maxValue, maxValueCB,
     }) => {
 
     return (
         <div className="graph-pannel-container">
-            {/* in case, drag & drop file is useful */}
-            {/* <Cell title={'cell-title'}>
-                <FileUploader handleChange={setDataCB} name="files" types={["JPG", "PNG", "GIF"]} />
-            </Cell>             */}
-
-            <Cell title={'cell-title'}>
-                <button
-                    onClick={() => setDataCB('test')}
-                >
-                    I am test button
-                </button>
-            </Cell>
 
             <Cell title={'ROTATE'}>
                 <GroupButton

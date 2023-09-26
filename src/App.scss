@@ -20,16 +20,13 @@ a {
 
 /* GRAPH LAYOUT STYLES */
 .graph-wrapper {
-  height: 100vh;
+  // height: 100vh;
 
   .svg-container {
     display: flex;
     flex-wrap: wrap;
     overflow: auto;
     padding-left: 100px;
-    padding-top: 50px;
-    background-color: #e2e2e2;
-    min-height: 520px;
     & > div {
       flex: 50%;
     }

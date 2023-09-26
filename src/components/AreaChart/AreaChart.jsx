@@ -26,7 +26,6 @@ const AreaChart = ({
   const [pointVerticalShift, setPointVerticalShift] = useState(0); // TODO: vertical shift
   
   const handleRangeInput = (e, id) => {
-    console.log('>>> handleRangeInput', e, id);
     if (id === 'curveArea') {
       setCurveValue(e.target?.value)
     }
@@ -34,17 +33,14 @@ const AreaChart = ({
       setLineWidthValue(e.target?.value)
     }
     if (id === 'pointSize') {
-      // console.log('>>> pointSize e.target.value', e.target?.value)
       setPointValue(e.target?.value)
     }
     if (id === 'pointShift') {
-      console.log('>>> pointShift e.target.value', e.target?.value)
       setPointVerticalShift(e.target?.value)
     }    
   }
 
   const toggleCB = (isToggled) => {
-    console.log('>>> isToggled', isToggled);
     setAreaShade(isToggled);
 
   }

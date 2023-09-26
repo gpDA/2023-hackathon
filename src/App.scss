@@ -38,6 +38,7 @@ a {
     overflow: auto;
     max-height: 50vh;
     background-color: rgb(255, 255, 255);
+    display: none;
 
     & > div {
       flex: 50%;

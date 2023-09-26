@@ -1,9 +1,6 @@
 import styles  from './RangeInput.module.scss'
 
 const RangeInput = ({ id, handleRangeInput, step = 1, value, min, max }) => {
-    // const handleRangeInput = (e, id) => {
-    //     console.log(e, id);
-    // }
     
 
     return (

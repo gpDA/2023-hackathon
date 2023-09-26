@@ -1,7 +1,6 @@
 import * as d3 from 'd3';
 
 export const createColorPalette = (type) => {
-  console.log('>>>>', type);
     switch (type) {
       case "Color-1":
         return d3.schemeCategory10[0];

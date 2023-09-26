@@ -6,6 +6,7 @@ import { MdStackedBarChart } from 'react-icons/md';
 import { LuAreaChart } from 'react-icons/lu';
 import { AiOutlinePieChart } from 'react-icons/ai';
 import { GiElephant } from 'react-icons/gi';
+import { TbChartBubble } from 'react-icons/tb';
 
 const sidebarNavItems = [
     {
@@ -32,14 +33,18 @@ const sidebarNavItems = [
         to: '/2023-hackathon/pie-graph',
         section: 'pie-graph'
     },
+    {
+        display: 'Bubble Plot',
+        icon: <TbChartBubble />,
+        to: '/2023-hackathon/bubble-plot',
+        section: 'bubble-plot'
+    },    
 ]
 
 const Sidebar = () => {
     const [activeIndex, setActiveIndex] = useState(0);
     const location = useLocation();
     const navigate = useNavigate ();
-
-    console.log('>> location', location);
 
     // change active index
     useEffect(() => {

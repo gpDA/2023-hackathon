@@ -343,7 +343,6 @@ const Bar = ({
   }
 
   useEffect(() => {
-    console.log('>>> useEffect', data);
     if (svgRef.current || data) {
       createGraph(svgRef.current);
     }

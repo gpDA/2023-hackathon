@@ -36,6 +36,8 @@ a {
     display: flex;
     flex-wrap: wrap;
     overflow: auto;
+    max-height: 50vh;
+    background-color: rgb(255, 255, 255);
 
     & > div {
       flex: 50%;

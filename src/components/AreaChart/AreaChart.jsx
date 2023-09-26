@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback, useState } from "react";
+import React, { useMemo, useRef, useEffect, useCallback, useState } from "react";
 import * as d3 from "d3";
 import AreaChartPanel from "./AreaChartPanel";
 import styles from './AreaChart.module.scss';
@@ -15,6 +15,52 @@ const AreaChart = ({
 }) => {
   const svgRef = useRef(null);
   const [copyData, setCopyData] = useState([]);
+  const [curveValue, setCurveValue] = useState(0.5);
+  const [pointValue, setPointValue] = useState(8);
+  const [lineWidthValue, setLineWidthValue] = useState(3);
+  const [areaShade, setAreaShade] = useState(true);
+  const [pointColor, setPointColor] = useState('#1C70C8');
+  const [lineColor, setLineColor] = useState('#1C70C8');
+  const [fillColor, setFillColor] = useState('#1C70C8');
+  const [pointShapeType, setPointShapeType] = useState({ value: 'symbolCircle', label: 'symbolCircle'});
+  const [pointVerticalShift, setPointVerticalShift] = useState(0); // TODO: vertical shift
+  
+  const handleRangeInput = (e, id) => {
+    console.log('>>> handleRangeInput', e, id);
+    if (id === 'curveArea') {
+      setCurveValue(e.target?.value)
+    }
+    if (id === 'lineWidth') {
+      setLineWidthValue(e.target?.value)
+    }
+    if (id === 'pointSize') {
+      // console.log('>>> pointSize e.target.value', e.target?.value)
+      setPointValue(e.target?.value)
+    }
+    if (id === 'pointShift') {
+      console.log('>>> pointShift e.target.value', e.target?.value)
+      setPointVerticalShift(e.target?.value)
+    }    
+  }
+
+  const toggleCB = (isToggled) => {
+    console.log('>>> isToggled', isToggled);
+    setAreaShade(isToggled);
+
+  }
+
+  const handleColorPick = (id, color) => {
+    if (id === 'point-color') {
+      setPointColor(color.hex)
+    }    
+    if (id === 'line-color') {
+      setLineColor(color.hex)
+    }
+    if (id === 'fill-color') {
+      setFillColor(color.hex)
+    }        
+    
+  }
 
   useEffect(() => {
     const parseTime = d3.timeParse("%Y");
@@ -26,11 +72,14 @@ const AreaChart = ({
 
   const drawSvg = useCallback(
     (div) => {
+      d3.selectAll(".svg-wrapper").remove();
+
       const svg = d3
         .select(div)
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
+        .attr('class', 'svg-wrapper')
         .attr("transform", `translate(${margin.left},${margin.right})`);
       return svg;
     },
@@ -55,9 +104,27 @@ const AreaChart = ({
     return [x, y];
   }, [width, height, copyData, xAxis, yAxis]);
 
+  const showArea = useCallback((svg, x, y) => {
+      // Add the area
+      svg
+        .append("path")
+        .datum(copyData)
+        
+        .attr("fill", fillColor)
+        .attr(
+          "d",
+          d3
+            .area().curve(d3.curveCardinal.tension(curveValue))
+            .x((d) => x(d[xAxis]))
+            .y0(y(0))
+            .y1((d) => y(d[yAxis]))
+        );
+      return svg;
+  }, [fillColor, copyData, curveValue])
+
   const createAreaGraph = useCallback(
     (div) => {
-      const svg = drawSvg(div);
+      let svg = drawSvg(div);
       const [x, y] = handleAxis();
 
       svg
@@ -68,48 +135,36 @@ const AreaChart = ({
       // svg.append('line').classed('hoverLine', true)
       // svg.append('circle').classed('hoverPoint', true);
       svg.append("text").classed("hoverText", true);
-
-      // Add the area
-      svg
-        .append("path")
-        .datum(copyData)
-        .attr("fill", "#cce5df")
-        .attr("stroke", "#69b3a2")
-        .attr("stroke-width", 1.5)
-        .attr(
-          "d",
-          d3
-            .area()
-            .x((d) => x(d[xAxis]))
-            .y0(y(0))
-            .y1((d) => y(d[yAxis]))
-        );
+      
+      areaShade && showArea(svg, x, y);
 
       svg
         .append("path")
         .datum(copyData)
         .attr("fill", "none")
-        .attr("stroke", "#69b3a2")
-        .attr("stroke-width", 2)
+        .attr("stroke", lineColor)
+        .attr("stroke-width", lineWidthValue)
         .attr(
           "d",
           d3
-            .line()
+            .line().curve(d3.curveCardinal.tension(curveValue))
             .x((d) => x(d[xAxis]))
             .y((d) => y(d[yAxis]))
         );
 
+      // TODO: box area yes OR no
+
       svg
         .selectAll("myCircles")
         .data(copyData)
-        .join("circle")
-        .attr("fill", "yellow")
-        .attr("stroke", "none")
-        .attr("cx", (d) => x(d[xAxis]))
-        .attr("cy", (d) => y(d[yAxis]))
-        .attr("r", 3);
+        .join(
+          enter => enter.append("path")
+              .attr("d", d3.symbol().type(d3[pointShapeType?.value ?? '']).size(pointValue * 20))
+              .attr("transform", (d) => `translate(${x(d[xAxis])}, ${y(d[yAxis]) - pointVerticalShift})`)
+              .attr("fill", pointColor)
+              )
     },
-    [handleAxis, height, drawSvg, copyData, xAxis, yAxis]
+    [handleAxis, height, drawSvg, copyData, xAxis, yAxis, pointVerticalShift]
   );
 
   useEffect(() => {
@@ -123,7 +178,20 @@ const AreaChart = ({
       <div className="svg-container">
         <svg ref={svgRef} />
       </div>
-      <AreaChartPanel />
+      <AreaChartPanel
+        curveValue={curveValue}
+        pointValue={pointValue}
+        lineWidthValue={lineWidthValue}
+        pointVerticalShift={pointVerticalShift}
+        pointColor={pointColor}
+        lineColor={lineColor}
+        fillColor={fillColor}
+        handleColorPick={handleColorPick}
+        handleRangeInput={handleRangeInput}
+        pointShapeType={pointShapeType}
+        pointShapeButtonGroupCB={setPointShapeType}
+        toggleCB={toggleCB}
+      />
     </div>
   );
 };

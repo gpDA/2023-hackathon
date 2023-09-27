@@ -45,7 +45,11 @@ span:before {
 
   input {
     height: 30px;
+    width: 30px;
     opacity: 1;
+  }
+  .range-input {
+    width: 100px;
   }
 }
 }

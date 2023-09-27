@@ -21,8 +21,8 @@ const ToggleButton = ({ id, label, toggled, onClick, onChange, value }) => {
                     !isToggled && (id === 'max' || id === 'min')  && 
                     (
                         <div className={styles['input-wrapper']}>
-                            <input style={{width: '30px'}} readonly value={value === -1 ? 0 : value} />
-                            <input style={{width: '100px'}} type="range" min={0} max={300} onChange={onChange} value={value} />
+                            <input readOnly value={value === -1 ? 0 : value} />
+                            <input className={styles['range-input']} type="range" min={0} max={300} onChange={onChange} value={value} />
                         </div>
                     )
                 }               

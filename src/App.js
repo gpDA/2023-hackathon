@@ -7,6 +7,7 @@ import PieGraph from "./components/PieGraph/PieGraph";
 import Sidebar from "./components/Sidebar/Sidebar";
 import GraphGallery from "./components/GraphGallery/GraphGallery";
 import { Routes, Route, Outlet, Link, Navigate } from "react-router-dom";
+import BubblePlot from './components/BubblePlot/BubblePlot';
 
 const defaultData = [
   { Country: 'US', Value: 100 },
@@ -63,6 +64,7 @@ function App() {
           <Route path='stacked-bar' element={<StackedBar data={STACKED_BAR_CHART_DATA} />}/>
           <Route path='area-chart' element={<AreaChart data={AREA_CHART_DATA} />}/>
           <Route path='pie-graph' element={<PieGraph data={BAR_CHART_DATA} dataKey="label" value="value" />}/>
+          <Route path='bubble-plot' element={<BubblePlot />}/>
           {/* route fallback - redirect to the following path for non catchable routh path */}
           <Route
               path="*"

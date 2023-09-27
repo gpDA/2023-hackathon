@@ -19,7 +19,6 @@ export const graphSlice = createSlice({
     updateGraph: (state, action) => {
       const {key, value} = action.payload;
       const [key1, key2] = Object.keys(value[0])
-      console.log(state[key]);
       state[key].data = value;
       state[key].key = key1;
       state[key].value = key2;

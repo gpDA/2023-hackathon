@@ -1,9 +1,17 @@
 import styles from './BubblePlot.module.scss';
 
-const BubblePlotPanel = () => {
+const BubblePlotPanel = ({legendMoveFlag, setLegendMoveFlag}) => {
     return (
         <div className="graph-pannel-container">
-            BubblePlotPanel
+
+        <label>
+            <input
+            type="checkbox"
+            checked={legendMoveFlag}
+            onChange={() => setLegendMoveFlag(!legendMoveFlag)}
+            />
+            Have you tried to move legend over?
+        </label>
         </div>
     )
 };

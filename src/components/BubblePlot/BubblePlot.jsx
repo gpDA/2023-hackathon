@@ -23,6 +23,7 @@ const BubblePlot = ({
 }) => {
   const svgRef = useRef(null);
   const [legendMoveFlag, setLegendMoveFlag] = useState(false);
+  const [showBrush, setShowBrush] = useState(false);
 
   const drawSvg = useCallback(
     (div) => {
@@ -63,7 +64,7 @@ const BubblePlot = ({
       const x = d3.scaleLinear()
         .domain([0, 350]) // 350
         .range([ 0, width ]);
-      svg.append("g")
+      const xAxis = svg.append("g")
         .attr("transform", `translate(0, ${height})`)
         .attr("class", "test1")
         .call(d3.axisBottom(x));
@@ -132,10 +133,80 @@ const BubblePlot = ({
         d3.select(this).classed("dragging", false);
       }
 
+    // Add a clipPath: everything out of this area won't be drawn.
+    const clip = svg.append("defs").append("svg:clipPath")
+        .attr("id", "clip")
+        .append("svg:rect")
+        // .append("class", "brush")
+        .attr("width", width )
+        .attr("height", height )
+        .attr("x", 0)
+        .attr("y", 0);
+
+    function updateChart(event) {
+      
+      const extent = event.selection;
+      // const extent = [100, 150]
+      console.log('updateChart', extent);
+
+        // A function that set idleTimeOut to null
+    var idleTimeout
+    function idled() { idleTimeout = null; }
+    // If no selection, back to initial coordinate. Otherwise, update X axis domain
+    if(!extent){
+      if (!idleTimeout) return idleTimeout = setTimeout(idled, 350); // This allows to wait a little bit
+      // console.log('>>> here');
+      x.domain([ 0, 350])
+    }else{
+      x.domain([ x.invert(extent[0]), x.invert(extent[1]) ])
+      area.call(brush.move, null) // This remove the grey brush area as soon as the selection has been done
+    }
+
+      // x.domain([ x.invert(extent[0]), x.invert(extent[1]) ])
+      // x.domain([ x.invert(0), x.invert(200) ])
+
+      // d3.brushX()
+      //   .extent([[0,0], [width, height]])
+      //   .on("move", null)
+
+      // svg.selectAll(".main-graph").call(d3.brushX()
+      // .extent([[0,0], [width, height]])
+      // .on("move", null))
+
+      // area.selectAll(".brush").call(brush.move, null)
+
+      xAxis.transition().duration(1000).call(d3.axisBottom(x))
+
+      area
+      .selectAll(".dot")
+      .transition().duration(1000)
+      .attr("cx", function (d) { return x(d.population); } )
+      .attr("cy", function (d) { return y(d.gdp); } )
+
+          
+    }
+
+    function endChart(event) {
+      console.log('end')
+    }
+
+    // Add brushing
+    // const brush = d3.brushX()                   // Add the brush feature using the d3.brush function
+    //     .extent( [ [0,0], [width,height] ] )  // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
+    //     .on("end", updateChart)               // Each time the brush selection changes, trigger the 'updateChart' function        
+
+    var area = svg.append('g')
+    .attr("clip-path", "url(#clip)")        
+    // Create an area generator
+    // const areaGenerator = d3.area()
+    //   .x(function(d) { return x(d.date) })
+    //   .y0(y(0))
+    //   .y1(function(d) { return y(d.value) })        
+
       // Add dots
-      svg.append('g')
+      area
         .attr("class", "main-graph")
-        .selectAll("dot")
+        .selectAll(".dot")
         .data(data)
         .join("circle")
           .attr("cx", d => x(d.population))
@@ -144,6 +215,7 @@ const BubblePlot = ({
           .style("fill", d => myColor(d.continent))
           .style("opacity", "0.7")
           .attr("stroke", "white")
+          .attr("class", "dot")
           .style("stroke-width", "2px")
           // -3- Trigger the functions
           .on("mouseover", showTooltip )
@@ -152,6 +224,27 @@ const BubblePlot = ({
           // .append("text") // TODO: learn the diff between .append vs. .join
           // .attr("class", "textOnCircle")
           // .text((d) => d.country)
+
+
+          // This is need to be change with the 
+          // if (showBrush) {
+            var brush = d3.brushX()
+            .extent([[0,0], [width, height]])
+            .on("end", updateChart)
+  
+            area
+            .attr("class", "brush").call(brush)
+          // }
+
+        // svg.selectAll(".main-graph").call(d3.brushX()
+        // .extent([[0,0], [width, height]])
+        // .on("start", updateChart)
+        // .on("end", endChart)
+        // )
+
+        // const brush = d3.brushX()
+        // .extent([[0,0], [width, height]])
+        // .on("start", updateChart)
 
       const wrapperTooltip = d3.select(".svg-container")
       const tooltip = wrapperTooltip.append("div")

@@ -113,14 +113,6 @@ const BubblePlot = ({
         .style("opacity", 0)        
       }
 
-      const dragEvent = (event,d) => {
-      
-
-        d3.select(this).attr("transform", function(d,i){
-          return "translate(" + [ event.dx,event.dy ] + ")"
-        });        
-      }
-
       function dragstarted(event, d) {
         setLegendMoveFlag(true);
         event.sourceEvent.stopPropagation();
@@ -128,19 +120,12 @@ const BubblePlot = ({
       }
 
       function dragged(event, d) {
-
         const legends = d3.selectAll(".legends")
         const translateValue = legends?.attr("transform") ?? '';
-
-        let x = 0;
-        let y = 0;
-
-        if (translateValue) {
-          [x, y] = translateValue.match(/-?\d+/g).map(Number);
-        }
+        const [x, y] = translateValue.substring(translateValue.indexOf("(")+1, translateValue.indexOf(")")).split(",");
 
         legends
-          .attr("transform", "translate(" + [ x + event.dx, y + event.dy ] + ")")
+          .attr("transform", "translate(" + [ +x + event.dx, +y + event.dy ] + ")")
       }
       
       function dragended() {
@@ -187,7 +172,7 @@ const BubblePlot = ({
       const startMargin = 20;
       
       const g = svg.append('g')
-        .attr("class", "legends")
+        .attr("class", "legends").attr("transform", "translate(0,0)")
 
       g
         .selectAll("test123")
@@ -219,8 +204,6 @@ const BubblePlot = ({
             .on('drag', dragged)
             .on('end', dragended)
             )
-
-      dragEvent(svg.selectAll("test"))
 
         svg.append("g")
           .append("text")

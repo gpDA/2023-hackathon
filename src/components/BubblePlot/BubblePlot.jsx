@@ -146,8 +146,6 @@ const BubblePlot = ({
     function updateChart(event) {
       
       const extent = event.selection;
-      // const extent = [100, 150]
-      console.log('updateChart', extent);
 
         // A function that set idleTimeOut to null
     var idleTimeout
@@ -155,7 +153,6 @@ const BubblePlot = ({
     // If no selection, back to initial coordinate. Otherwise, update X axis domain
     if(!extent){
       if (!idleTimeout) return idleTimeout = setTimeout(idled, 350); // This allows to wait a little bit
-      // console.log('>>> here');
       x.domain([ 0, 350])
     }else{
       x.domain([ x.invert(extent[0]), x.invert(extent[1]) ])
@@ -184,10 +181,6 @@ const BubblePlot = ({
       .attr("cy", function (d) { return y(d.gdp); } )
 
           
-    }
-
-    function endChart(event) {
-      console.log('end')
     }
 
     // Add brushing
